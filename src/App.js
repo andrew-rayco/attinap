@@ -1,8 +1,28 @@
-import React from "react";
+import React, { Component } from 'react'
+import SleepButton from './components/SleepButton'
 
-export default () => (
-  <>
-    <h1>Welcome to React Parcel Micro App!</h1>
-    <p>Hard to get more minimal than this React app.</p>
-  </>
-);
+import moment from 'moment'
+
+class App extends Component {
+    state = { sleepTime: 'No time yet' }
+
+    updateTime() {
+        const now = new Date()
+        this.setState({
+            sleepTime: moment(now).format('dddd, MMMM Do YYYY, h:mm:ss a')
+        })
+    }
+
+    render() {
+        return (
+            <>
+                <SleepButton
+                    sleepTime={this.state.sleepTime}
+                    updateTime={() => this.updateTime()}
+                />
+            </>
+        )
+    }
+}
+
+export default App
