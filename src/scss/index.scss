@@ -1,0 +1,49 @@
+$lightGreen: #c5d86d;
+$grayBlue: #8c86aa;
+$darkGrayBlue: #4d485d;
+$snow: #fcf7f8;
+$lightGray: #ced3dc;
+$wildBlueYonder: #aba9c3;
+// Palette source:
+// https://coolors.co/c5d86d-8c86aa-fcf7f8-ced3dc-aba9c3
+
+body {
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    background: $lightGreen;
+    color: $darkGrayBlue;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 1em;
+    min-width: 50vw;
+    font-size: 1.2em;
+}
+
+button {
+    font-family: 'Fredoka One', cursive;
+    padding: 1.2em;
+    border: 2px solid $snow;
+    background: $lightGray;
+    color: $grayBlue;
+    min-width: 20vw;
+    border-radius: 6px;
+    font-size: 1.4em;
+}
+
+button:hover {
+    border: 2px solid $lightGray;
+    background: $snow;
+    transition: all 0.8s;
+    cursor: pointer;
+}

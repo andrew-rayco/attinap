@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import Button from './components/Button'
 
-import './css/App.css'
+import './scss/index.scss'
 
 class App extends Component {
     state = {
