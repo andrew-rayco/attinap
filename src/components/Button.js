@@ -5,6 +5,7 @@ const Button = props => {
         <>
             <button onClick={() => props.updateTime()}>{props.title}</button>
             <p>{props.time}</p>
+            <p>{props.ago}</p>
         </>
     )
 }

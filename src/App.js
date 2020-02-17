@@ -1,36 +1,52 @@
 import React, { Component } from 'react'
+import moment from 'moment'
+
 import Button from './components/Button'
 
-import moment from 'moment'
+import './css/App.css'
 
 class App extends Component {
     state = {
-        sleepTime: 'No time yet',
-        awakeTime: 'No time yet'
+        sleepTime: '',
+        awakeTime: ''
     }
 
     updateTime(time) {
         const now = new Date()
 
         this.setState({
-            [time]: moment(now).format('dddd, MMMM Do YYYY, h:mm:ss a')
+            [time]: moment(now)
         })
     }
 
+    formatTime(time) {
+        return time
+            ? moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')
+            : 'No time yet'
+    }
+
+    formatAgo(time) {
+        return time ? moment(time).fromNow() : ''
+    }
+
     render() {
+        const { sleepTime, awakeTime } = this.state
+
         return (
-            <>
+            <div className="main">
                 <Button
-                    time={this.state.sleepTime}
+                    time={this.formatTime(sleepTime)}
                     updateTime={() => this.updateTime('sleepTime')}
                     title={'Just went to sleep'}
+                    ago={this.formatAgo(sleepTime)}
                 />
                 <Button
-                    time={this.state.awakeTime}
+                    time={this.formatTime(awakeTime)}
                     updateTime={() => this.updateTime('awakeTime')}
                     title={'Just woke up'}
+                    ago={this.formatAgo(awakeTime)}
                 />
-            </>
+            </div>
         )
     }
 }
