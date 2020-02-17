@@ -39,12 +39,14 @@ class App extends Component {
                     updateTime={() => this.updateTime('sleepTime')}
                     title={'Just went to sleep'}
                     ago={this.formatAgo(sleepTime)}
+                    className={'sleep-time'}
                 />
                 <Button
                     time={this.formatTime(awakeTime)}
                     updateTime={() => this.updateTime('awakeTime')}
                     title={'Just woke up'}
                     ago={this.formatAgo(awakeTime)}
+                    className={'awake-time'}
                 />
             </div>
         )

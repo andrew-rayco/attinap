@@ -2,20 +2,25 @@ body {
     display: flex;
     justify-content: center;
     padding: 1em;
-    background: hotpink;
+    background: burlywood;
 }
 
-.main {
+.btn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1em;
+    margin-bottom: 1em;
+    background: lightsteelblue;
+    min-width: 50vw;
 }
 
 button {
-    padding: 1em;
+    padding: 2em;
     border: 4px solid green;
     background: lightgreen;
     color: #666;
+    min-width: 20vw;
 }
 
 button:hover {
