@@ -18,16 +18,18 @@ class App extends Component {
 
     updateTime(time) {
         const now = new Date()
+        const newState = this.state[time].concat(now)
 
         this.setState({
-            [time]: [...this.state[time], now]
+            [time]: newState
         })
     }
 
     deleteLast(name) {
         let currentState = this.state[name]
-        const newState = currentState.pop()
-        this.setState({ [name]: newState })
+        currentState.pop()
+
+        this.setState({ [name]: currentState })
     }
 
     formatTime(time) {
