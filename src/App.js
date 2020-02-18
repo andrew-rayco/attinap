@@ -6,17 +6,28 @@ import Button from './components/Button'
 import './scss/index.scss'
 
 class App extends Component {
-    state = {
-        sleepTime: '',
-        awakeTime: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            sleepTime: [],
+            awakeTime: []
+        }
+
+        this.updateTime = this.updateTime.bind(this)
     }
 
     updateTime(time) {
         const now = new Date()
 
         this.setState({
-            [time]: moment(now)
+            [time]: [...this.state[time], now]
         })
+    }
+
+    deleteLast(name) {
+        let currentState = this.state[name]
+        const newState = currentState.pop()
+        this.setState({ [name]: newState })
     }
 
     formatTime(time) {
@@ -31,21 +42,25 @@ class App extends Component {
 
     render() {
         const { sleepTime, awakeTime } = this.state
+        const lastSleep = sleepTime[sleepTime.length - 1]
+        const lastWake = awakeTime[awakeTime.length - 1]
 
         return (
             <div className="main">
                 <Button
-                    time={this.formatTime(sleepTime)}
+                    time={this.formatTime(lastSleep)}
                     updateTime={() => this.updateTime('sleepTime')}
+                    deleteLast={() => this.deleteLast('sleepTime')}
                     title={'Just went to sleep'}
-                    ago={this.formatAgo(sleepTime)}
+                    ago={this.formatAgo(lastSleep)}
                     className={'sleep-time'}
                 />
                 <Button
-                    time={this.formatTime(awakeTime)}
+                    time={this.formatTime(awakeTime[awakeTime.length - 1])}
                     updateTime={() => this.updateTime('awakeTime')}
+                    deleteLast={() => this.deleteLast('awakeTime')}
                     title={'Just woke up'}
-                    ago={this.formatAgo(awakeTime)}
+                    ago={this.formatAgo(lastWake)}
                     className={'awake-time'}
                 />
             </div>

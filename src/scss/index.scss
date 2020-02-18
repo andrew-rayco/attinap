@@ -33,7 +33,7 @@ p {
 button {
     font-family: 'Fredoka One', cursive;
     padding: 1.2em;
-    border: 2px solid $snow;
+    border: 3px solid $snow;
     background: $lightGray;
     color: $grayBlue;
     min-width: 20vw;
@@ -42,7 +42,7 @@ button {
 }
 
 button:hover {
-    border: 2px solid $lightGray;
+    border: 3px solid $lightGray;
     background: $snow;
     transition: all 0.8s;
     cursor: pointer;
