@@ -65,6 +65,7 @@ class App extends Component {
                     ago={this.formatAgo(lastWake)}
                     className={'awake-time'}
                 />
+                <div className="time-picker"></div>
             </div>
         )
     }
