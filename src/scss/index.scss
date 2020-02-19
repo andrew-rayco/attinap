@@ -140,3 +140,28 @@ button:hover {
 .light {
     font-weight: 100;
 }
+
+// Timepicker styles
+
+.timepicker-bubble circle {
+    fill: $grayBlue;
+}
+
+.timepicker-hand {
+    stroke: $grayBlue;
+}
+
+.timepicker-bubble.small.active circle,
+.timepicker-bubble.active circle {
+    fill: $darkGrayBlue;
+}
+
+.timepicker-info-digits.active {
+    color: $darkerGreen;
+}
+
+.timepicker-bubble circle:hover,
+.timepicker-bubble text:hover {
+    fill: $darkerGreen;
+    // background: $darkerGreen;
+}
