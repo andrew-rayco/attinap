@@ -56,16 +56,28 @@ class App extends Component {
         this.setState({ clockEntries: newState, timepickerMode: false })
     }
 
-    handleClockSubmit() {
+    handleClockSubmit(name) {
         // take last entry from clockEntries and add to selected sleep/awake state
-        const { clockEntries, sleepTime } = this.state
+        const { clockEntries } = this.state
+
         const newTime = moment(clockEntries[clockEntries.length - 1])
-        const newState = sleepTime.concat(newTime)
-        this.setState({ sleepTime: newState })
+        const newState = this.state[name].concat(newTime)
+        this.setState({ [name]: newState })
     }
 
     addTime(name) {
         this.setState({ [name]: !this.state[name] })
+    }
+
+    renderTickTock(name) {
+        return (
+            <TickTock
+                mode={this.state.timepickerMode}
+                handleChange={(hours, mins) => this.handleChange(hours, mins)}
+                timepickerMode={this.state.timepickerMode}
+                handleClockSubmit={() => this.handleClockSubmit(name)}
+            />
+        )
     }
 
     render() {
@@ -85,16 +97,11 @@ class App extends Component {
                     addTime={() => this.addTime('sleepClockOpen')}
                     isClockOpen={this.state.sleepClockOpen}
                 />
-                {this.state.sleepClockOpen ? (
-                    <TickTock
-                        mode={this.state.timepickerMode}
-                        handleChange={(hours, mins) =>
-                            this.handleChange(hours, mins)
-                        }
-                        timepickerMode={this.state.timepickerMode}
-                        handleClockSubmit={this.handleClockSubmit}
-                    />
-                ) : null}
+
+                {this.state.sleepClockOpen
+                    ? this.renderTickTock('sleepTime')
+                    : null}
+
                 <Button
                     time={this.formatTime(awakeTime[awakeTime.length - 1])}
                     updateTime={() => this.updateTime('awakeTime')}
