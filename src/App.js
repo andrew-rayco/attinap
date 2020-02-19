@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Timepicker } from 'react-timepicker'
 
 import Button from './components/Button'
+import TickTock from './components/TickTock'
 
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
@@ -83,21 +83,17 @@ class App extends Component {
                     ago={this.formatAgo(lastSleep)}
                     className={'sleep-time'}
                     addTime={() => this.addTime('sleepClockOpen')}
+                    isClockOpen={this.state.sleepClockOpen}
                 />
                 {this.state.sleepClockOpen ? (
-                    <div className="time-picker">
-                        <Timepicker
-                            hours={new Date().getHours()}
-                            minutes={new Date().getMinutes()}
-                            onChange={(hours, mins) =>
-                                this.handleChange(hours, mins)
-                            }
-                            mode={this.state.timepickerMode}
-                        />
-                        <button onClick={this.handleClockSubmit}>
-                            Submit time
-                        </button>
-                    </div>
+                    <TickTock
+                        mode={this.state.timepickerMode}
+                        handleChange={(hours, mins) =>
+                            this.handleChange(hours, mins)
+                        }
+                        timepickerMode={this.state.timepickerMode}
+                        handleClockSubmit={this.handleClockSubmit}
+                    />
                 ) : null}
                 <Button
                     time={this.formatTime(awakeTime[awakeTime.length - 1])}
@@ -107,6 +103,7 @@ class App extends Component {
                     ago={this.formatAgo(lastWake)}
                     className={'awake-time'}
                     addTime={() => this.addTime('awakeClockOpen')}
+                    isClockOpen={this.state.awakeClockOpen}
                 />
             </div>
         )

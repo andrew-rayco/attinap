@@ -10,7 +10,7 @@ const Button = props => {
                 Undo last
             </a>
             <a href="#" onClick={() => props.addTime()}>
-                Add time
+                {props.isClockOpen ? 'Close clock' : 'Add time'}
             </a>
         </div>
     )
