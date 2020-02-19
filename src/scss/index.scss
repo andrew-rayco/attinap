@@ -28,17 +28,23 @@ p {
     margin-bottom: 1em;
     min-width: 50vw;
     font-size: 1.2em;
+}
 
-    button {
-        font-family: 'Fredoka One', cursive;
-        padding: 1.2em;
-        border: 3px solid $snow;
-        background: $lightGray;
-        color: $grayBlue;
-        min-width: 20vw;
-        border-radius: 6px;
-        font-size: 1.4em;
-    }
+button {
+    font-family: 'Fredoka One', cursive;
+    padding: 1.2em;
+    border: 3px solid $snow;
+    background: $lightGray;
+    color: $grayBlue;
+    min-width: 20vw;
+    border-radius: 6px;
+    font-size: 1.4em;
+}
+
+.time-picker button {
+    padding: 0.5em;
+    font-size: 1em;
+    min-width: 15vw;
 }
 
 button:hover {

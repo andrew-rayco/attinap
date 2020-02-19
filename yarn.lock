@@ -4553,6 +4553,11 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-timepicker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-timepicker/-/react-timepicker-2.0.2.tgz#946e29c6bc0476bb1933b88b19cc2e6fba1b30cc"
+  integrity sha512-ysooxfKhlVCWVwI2tL/DaNBk2y5LcAEod+q9PuLAcVx9RN3e0Fs0+MzigHY7oBPa+p+GDyTwKWkkwb3K9DA+uA==
+
 react@^16.9.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"

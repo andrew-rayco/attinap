@@ -7,7 +7,10 @@ const Button = props => {
             <p>{props.time}</p>
             <p>{props.ago}</p>
             <a href="#" onClick={() => props.deleteLast()}>
-                Remove last
+                Undo last
+            </a>
+            <a href="#" onClick={() => props.addTime()}>
+                Add time
             </a>
         </div>
     )

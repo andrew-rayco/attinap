@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import { Timepicker } from 'react-timepicker'
 
 import Button from './components/Button'
 
+import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
 
 class App extends Component {
@@ -10,10 +12,15 @@ class App extends Component {
         super(props)
         this.state = {
             sleepTime: [],
-            awakeTime: []
+            awakeTime: [],
+            clockEntries: [],
+            timepickerMode: true,
+            sleepClockOpen: false,
+            awakeClockOpen: false
         }
 
-        this.updateTime = this.updateTime.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleClockSubmit = this.handleClockSubmit.bind(this)
     }
 
     updateTime(time) {
@@ -42,6 +49,25 @@ class App extends Component {
         return time ? moment(time).fromNow() : ''
     }
 
+    handleChange(hours, mins) {
+        const newTime = { h: hours, m: mins }
+        const newState = this.state.clockEntries.concat(newTime)
+
+        this.setState({ clockEntries: newState, timepickerMode: false })
+    }
+
+    handleClockSubmit() {
+        // take last entry from clockEntries and add to selected sleep/awake state
+        const { clockEntries, sleepTime } = this.state
+        const newTime = moment(clockEntries[clockEntries.length - 1])
+        const newState = sleepTime.concat(newTime)
+        this.setState({ sleepTime: newState })
+    }
+
+    addTime(name) {
+        this.setState({ [name]: !this.state[name] })
+    }
+
     render() {
         const { sleepTime, awakeTime } = this.state
         const lastSleep = sleepTime[sleepTime.length - 1]
@@ -56,7 +82,23 @@ class App extends Component {
                     title={'Just went to sleep'}
                     ago={this.formatAgo(lastSleep)}
                     className={'sleep-time'}
+                    addTime={() => this.addTime('sleepClockOpen')}
                 />
+                {this.state.sleepClockOpen ? (
+                    <div className="time-picker">
+                        <Timepicker
+                            hours={new Date().getHours()}
+                            minutes={new Date().getMinutes()}
+                            onChange={(hours, mins) =>
+                                this.handleChange(hours, mins)
+                            }
+                            mode={this.state.timepickerMode}
+                        />
+                        <button onClick={this.handleClockSubmit}>
+                            Submit time
+                        </button>
+                    </div>
+                ) : null}
                 <Button
                     time={this.formatTime(awakeTime[awakeTime.length - 1])}
                     updateTime={() => this.updateTime('awakeTime')}
@@ -64,8 +106,8 @@ class App extends Component {
                     title={'Just woke up'}
                     ago={this.formatAgo(lastWake)}
                     className={'awake-time'}
+                    addTime={() => this.addTime('awakeClockOpen')}
                 />
-                <div className="time-picker"></div>
             </div>
         )
     }
