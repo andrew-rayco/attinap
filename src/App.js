@@ -33,7 +33,8 @@ class App extends Component {
 
         this.setState({
             [time]: newState,
-            [ago]: this.formatAgo(now)
+            [ago]: this.formatAgo(now),
+            currentStatus: time == 'awakeTime'
         })
     }
 
