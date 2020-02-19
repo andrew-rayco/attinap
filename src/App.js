@@ -45,9 +45,7 @@ class App extends Component {
     }
 
     formatTime(time) {
-        return time
-            ? moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')
-            : 'No time yet'
+        return time ? moment(time).format('dddd, h:mm:ss a') : 'No time yet'
     }
 
     formatAgo(time) {

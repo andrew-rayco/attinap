@@ -1,9 +1,12 @@
 $lightGreen: #c5d86d;
+$darkerGreen: #a2b15a;
 $grayBlue: #8c86aa;
 $darkGrayBlue: #4d485d;
 $snow: #fcf7f8;
 $lightGray: #ced3dc;
 $wildBlueYonder: #aba9c3;
+$skyBlue: #6dc5d8;
+$night: #581845;
 // Palette source:
 // https://coolors.co/c5d86d-8c86aa-fcf7f8-ced3dc-aba9c3
 
@@ -41,6 +44,12 @@ h2 {
 p {
     font-size: 1.2em;
     margin: 0.3em 0;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    // font-weight: 700;
 }
 
 .btn {
@@ -49,8 +58,36 @@ p {
     align-items: center;
     padding: 1em;
     margin-bottom: 1em;
-    min-width: 50vw;
+    width: 75vw;
+    max-width: 500px;
     font-size: 1.2em;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.sleep-time {
+    background: $night;
+    color: $snow;
+
+    a {
+        color: $snow;
+    }
+
+    a:hover {
+        color: $lightGreen;
+    }
+}
+
+.awake-time {
+    background: $skyBlue;
+
+    a {
+        color: $darkGrayBlue;
+    }
+
+    a:hover {
+        color: $grayBlue;
+    }
 }
 
 button {
@@ -63,6 +100,14 @@ button {
     border-radius: 6px;
     font-size: 1.4em;
     margin-bottom: 1em;
+}
+
+.manage-links {
+    margin-top: 1em;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 300;
 }
 
 .time-picker {
@@ -90,4 +135,8 @@ button:hover {
     background: $snow;
     transition: all 0.8s;
     cursor: pointer;
+}
+
+.light {
+    font-weight: 100;
 }
