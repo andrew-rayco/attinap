@@ -16,7 +16,10 @@ class App extends Component {
             clockEntries: [],
             timepickerMode: true,
             sleepClockOpen: false,
-            awakeClockOpen: false
+            awakeClockOpen: false,
+            sleepAgo: '',
+            awakeAgo: '',
+            currentStatus: true
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -26,9 +29,11 @@ class App extends Component {
     updateTime(time) {
         const now = new Date()
         const newState = this.state[time].concat(now)
+        const ago = time === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
 
         this.setState({
-            [time]: newState
+            [time]: newState,
+            [ago]: this.formatAgo(now)
         })
     }
 
@@ -70,6 +75,42 @@ class App extends Component {
         this.setState({ [name]: !this.state[name] })
     }
 
+    // Polls every 46 seconds (moment fromNow() changes at 45) to auto-update agos
+    startTimer() {
+        if (this.state.sleepAgo !== '' || this.state.awakeAgo !== '') {
+            if (!this.timerId) {
+                this.timerId = setInterval(() => {
+                    const {
+                        sleepTime,
+                        awakeTime,
+                        sleepAgo,
+                        awakeAgo
+                    } = this.state
+
+                    const newSleepAgo = this.formatAgo(
+                        sleepTime[sleepTime.length - 1]
+                    )
+                    const newAwakeAgo = this.formatAgo(
+                        awakeTime[awakeTime.length - 1]
+                    )
+
+                    if (newSleepAgo !== sleepAgo || newAwakeAgo !== awakeAgo) {
+                        this.setState({
+                            sleepAgo: newSleepAgo,
+                            awakeAgo: newAwakeAgo
+                        })
+                    }
+                }, 46000)
+            }
+        }
+    }
+
+    // Unsure if stopTimer is necessary as timer runs permanently,
+    // but here it is just in case. Because noob.
+    stopTimer() {
+        clearInterval(this.timerId)
+    }
+
     renderTickTock(name) {
         return (
             <TickTock
@@ -85,9 +126,15 @@ class App extends Component {
         const { sleepTime, awakeTime } = this.state
         const lastSleep = sleepTime[sleepTime.length - 1]
         const lastWake = awakeTime[awakeTime.length - 1]
+        this.startTimer()
 
         return (
             <div className="main">
+                <h1>AttiNap</h1>
+                <p>Currently:</p>
+                <h2>
+                    {this.state.currentStatus ? "He's awake" : "He's asleep"}
+                </h2>
                 <Button
                     time={this.formatTime(lastSleep)}
                     updateTime={() => this.updateTime('sleepTime')}
