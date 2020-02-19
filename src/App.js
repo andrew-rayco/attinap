@@ -62,7 +62,8 @@ class App extends Component {
 
         const newTime = moment(clockEntries[clockEntries.length - 1])
         const newState = this.state[name].concat(newTime)
-        this.setState({ [name]: newState })
+        const toggle = name == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
+        this.setState({ [name]: newState, [toggle]: !this.state[toggle] })
     }
 
     addTime(name) {
@@ -112,6 +113,10 @@ class App extends Component {
                     addTime={() => this.addTime('awakeClockOpen')}
                     isClockOpen={this.state.awakeClockOpen}
                 />
+
+                {this.state.awakeClockOpen
+                    ? this.renderTickTock('awakeTime')
+                    : null}
             </div>
         )
     }
