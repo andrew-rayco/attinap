@@ -10,11 +10,11 @@ export function writeData(date, name, timeArray) {
     })
 }
 
-export function readData(date, name, callback) {
+export function readData(date, callback) {
     console.log('hitting')
 
     return database
-        .ref(`${date}/${name}`)
+        .ref(`${date}`)
         .once('value')
         .then(snapshot => {
             callback(snapshot.val())

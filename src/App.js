@@ -29,11 +29,12 @@ class App extends Component {
     }
 
     getData() {
-        return firebase.readData('2-20-2020', 'awakeTime', data => {
+        return firebase.readData(moment().format('M-D-YYYY'), data => {
             console.log(data)
 
             this.setState({
-                awakeTime: data
+                awakeTime: data.awakeTime,
+                sleepTime: data.sleepTime
             })
         })
     }
