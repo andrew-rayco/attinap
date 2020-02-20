@@ -28,6 +28,16 @@ class App extends Component {
         this.handleClockSubmit = this.handleClockSubmit.bind(this)
     }
 
+    getData() {
+        return firebase.readData('2-20-2020', 'awakeTime', data => {
+            console.log(data)
+
+            this.setState({
+                awakeTime: data
+            })
+        })
+    }
+
     updateTime(time) {
         const now = new Date()
         const newState = this.state[time].concat(now)
@@ -47,10 +57,10 @@ class App extends Component {
     updateFirebase(date, time, newState) {
         // Format time entries before pushing to Firebase
         const cleanState = newState.map(time => {
-            return moment(time).format('LTS')
+            return moment(time).format()
         })
 
-        firebase.writeUserData(date, time, cleanState)
+        firebase.writeData(date, time, cleanState)
     }
 
     deleteLast(name) {
@@ -140,6 +150,9 @@ class App extends Component {
         const { sleepTime, awakeTime } = this.state
         const lastSleep = sleepTime[sleepTime.length - 1]
         const lastWake = awakeTime[awakeTime.length - 1]
+        if (awakeTime.length == 0) {
+            this.getData()
+        }
         this.startTimer()
 
         return (
