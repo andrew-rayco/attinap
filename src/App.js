@@ -31,7 +31,7 @@ class App extends Component {
 
     getData() {
         const todaysDate = moment().format('M-D-YYYY')
-        return firebase.readData('2-21-2020', data => {
+        return firebase.readData(todaysDate, data => {
             if (data) {
                 this.setState({
                     awakeTime: data.awakeTime,
