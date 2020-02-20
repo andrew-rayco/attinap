@@ -11,12 +11,19 @@ export function writeData(date, name, timeArray) {
 }
 
 export function readData(date, callback) {
-    console.log('hitting')
-
     return database
         .ref(`${date}`)
         .once('value')
-        .then(snapshot => {
-            callback(snapshot.val())
-        })
+        .then(
+            snapshot => {
+                callback(snapshot.val())
+            },
+            error => {
+                if (error) {
+                    console.log('There has been a ballsup', error)
+                } else {
+                    console.log('Data successfully saved')
+                }
+            }
+        )
 }

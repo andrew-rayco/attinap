@@ -21,7 +21,8 @@ class App extends Component {
             awakeClockOpen: false,
             sleepAgo: '',
             awakeAgo: '',
-            currentStatus: true
+            currentStatus: true,
+            hasCollectedData: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -29,13 +30,15 @@ class App extends Component {
     }
 
     getData() {
-        return firebase.readData(moment().format('M-D-YYYY'), data => {
-            console.log(data)
-
-            this.setState({
-                awakeTime: data.awakeTime,
-                sleepTime: data.sleepTime
-            })
+        const todaysDate = moment().format('M-D-YYYY')
+        return firebase.readData('2-21-2020', data => {
+            if (data) {
+                this.setState({
+                    awakeTime: data.awakeTime,
+                    sleepTime: data.sleepTime,
+                    hasCollectedData: true
+                })
+            }
         })
     }
 
@@ -72,7 +75,9 @@ class App extends Component {
     }
 
     formatTime(time) {
-        return time ? moment(time).format('dddd, h:mm:ss a') : 'No time yet'
+        return time
+            ? moment(time).format('dddd, h:mm:ss a')
+            : 'No time yet today'
     }
 
     formatAgo(time) {
@@ -148,10 +153,14 @@ class App extends Component {
     }
 
     render() {
-        const { sleepTime, awakeTime } = this.state
+        const { sleepTime, awakeTime, hasCollectedData } = this.state
         const lastSleep = sleepTime[sleepTime.length - 1]
         const lastWake = awakeTime[awakeTime.length - 1]
-        if (awakeTime.length == 0) {
+        if (
+            awakeTime.length == 0 &&
+            sleepTime.length == 0 &&
+            !hasCollectedData
+        ) {
             this.getData()
         }
         this.startTimer()
