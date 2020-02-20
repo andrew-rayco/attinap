@@ -7,6 +7,8 @@ import TickTock from './components/TickTock'
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
 
+import * as firebase from './firebase'
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -30,12 +32,25 @@ class App extends Component {
         const now = new Date()
         const newState = this.state[time].concat(now)
         const ago = time === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
+        const date = moment(now).format('M-D-YYYY')
 
-        this.setState({
-            [time]: newState,
-            [ago]: this.formatAgo(now),
-            currentStatus: time == 'awakeTime'
+        this.setState(
+            {
+                [time]: newState,
+                [ago]: this.formatAgo(now),
+                currentStatus: time == 'awakeTime'
+            },
+            this.updateFirebase(date, time, newState)
+        )
+    }
+
+    updateFirebase(date, time, newState) {
+        // Format time entries before pushing to Firebase
+        const cleanState = newState.map(time => {
+            return moment(time).format('LTS')
         })
+
+        firebase.writeUserData(date, time, cleanState)
     }
 
     deleteLast(name) {
