@@ -7,6 +7,8 @@ import TickTock from './components/TickTock'
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
 
+import * as firebase from './firebase'
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -19,23 +21,50 @@ class App extends Component {
             awakeClockOpen: false,
             sleepAgo: '',
             awakeAgo: '',
-            currentStatus: true
+            currentStatus: true,
+            hasCollectedData: false
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleClockSubmit = this.handleClockSubmit.bind(this)
     }
 
+    getData() {
+        const todaysDate = moment().format('M-D-YYYY')
+        return firebase.readData('2-21-2020', data => {
+            if (data) {
+                this.setState({
+                    awakeTime: data.awakeTime,
+                    sleepTime: data.sleepTime,
+                    hasCollectedData: true
+                })
+            }
+        })
+    }
+
     updateTime(time) {
         const now = new Date()
         const newState = this.state[time].concat(now)
         const ago = time === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
+        const date = moment(now).format('M-D-YYYY')
 
-        this.setState({
-            [time]: newState,
-            [ago]: this.formatAgo(now),
-            currentStatus: time == 'awakeTime'
+        this.setState(
+            {
+                [time]: newState,
+                [ago]: this.formatAgo(now),
+                currentStatus: time == 'awakeTime'
+            },
+            this.updateFirebase(date, time, newState)
+        )
+    }
+
+    updateFirebase(date, time, newState) {
+        // Format time entries before pushing to Firebase
+        const cleanState = newState.map(time => {
+            return moment(time).format()
         })
+
+        firebase.writeData(date, time, cleanState)
     }
 
     deleteLast(name) {
@@ -46,7 +75,9 @@ class App extends Component {
     }
 
     formatTime(time) {
-        return time ? moment(time).format('dddd, h:mm:ss a') : 'No time yet'
+        return time
+            ? moment(time).format('dddd, h:mm:ss a')
+            : 'No time yet today'
     }
 
     formatAgo(time) {
@@ -122,9 +153,16 @@ class App extends Component {
     }
 
     render() {
-        const { sleepTime, awakeTime } = this.state
+        const { sleepTime, awakeTime, hasCollectedData } = this.state
         const lastSleep = sleepTime[sleepTime.length - 1]
         const lastWake = awakeTime[awakeTime.length - 1]
+        if (
+            awakeTime.length == 0 &&
+            sleepTime.length == 0 &&
+            !hasCollectedData
+        ) {
+            this.getData()
+        }
         this.startTimer()
 
         return (
