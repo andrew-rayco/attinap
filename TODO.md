@@ -1,9 +1,10 @@
 # TODO
 
+-   Deleting last entry from Firebase
 -   Styles
 -   Nail down timepicker mode change (hrs to mins)
--   Poll every minute or 5 to ensure 'mins ago' is accurate
 -   Display and edit list of entries for today
+-   Testing dagnabbit!
 
 ## Additional features
 

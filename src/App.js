@@ -34,8 +34,8 @@ class App extends Component {
         return firebase.readData(todaysDate, data => {
             if (data) {
                 this.setState({
-                    awakeTime: data.awakeTime,
-                    sleepTime: data.sleepTime,
+                    awakeTime: data.awakeTime || [],
+                    sleepTime: data.sleepTime || [],
                     hasCollectedData: true
                 })
             }
@@ -136,7 +136,7 @@ class App extends Component {
     }
 
     // Unsure if stopTimer is necessary as timer runs permanently,
-    // but here it is just in case. Because noob.
+    // but here it is just in case. Because setInterval noob.
     stopTimer() {
         clearInterval(this.timerId)
     }
@@ -154,8 +154,8 @@ class App extends Component {
 
     render() {
         const { sleepTime, awakeTime, hasCollectedData } = this.state
-        const lastSleep = sleepTime[sleepTime.length - 1]
-        const lastWake = awakeTime[awakeTime.length - 1]
+        const lastSleep = sleepTime ? sleepTime[sleepTime.length - 1] : null
+        const lastWake = awakeTime ? awakeTime[awakeTime.length - 1] : null
         if (
             awakeTime.length == 0 &&
             sleepTime.length == 0 &&
