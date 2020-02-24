@@ -27,3 +27,13 @@ export function readData(date, callback) {
             }
         )
 }
+
+export function deleteEntry(date, name, index) {
+    return database.ref(`${date}/${name}/${index}`).remove(error => {
+        if (error) {
+            console.log('There has been a ballsup', errror)
+        } else {
+            console.log('Data successfully deleted')
+        }
+    })
+}

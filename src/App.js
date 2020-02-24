@@ -30,7 +30,7 @@ class App extends Component {
     }
 
     getData() {
-        const todaysDate = moment().format('M-D-YYYY')
+        const todaysDate = moment().format('YYYY-M-D')
         return firebase.readData(todaysDate, data => {
             if (data) {
                 this.setState({
@@ -46,7 +46,7 @@ class App extends Component {
         const now = new Date()
         const newState = this.state[time].concat(now)
         const ago = time === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
-        const date = moment(now).format('M-D-YYYY')
+        const date = moment(now).format('YYYY-M-D')
 
         this.setState(
             {
@@ -69,6 +69,11 @@ class App extends Component {
 
     deleteLast(name) {
         let currentState = this.state[name]
+        let index = currentState.length - 1
+        const date = moment(new Date()).format('YYYY-M-D')
+
+        firebase.deleteEntry(date, name, index)
+
         currentState.pop()
 
         this.setState({ [name]: currentState })
