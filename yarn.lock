@@ -5832,10 +5832,9 @@ react-test-renderer@^16.12.0:
     react-is "^16.8.6"
     scheduler "^0.18.0"
 
-react-timepicker@^2.0.2:
+"react-timepicker@git+https://github.com/andrew-rayco/react-timepicker.git":
   version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-timepicker/-/react-timepicker-2.0.2.tgz#946e29c6bc0476bb1933b88b19cc2e6fba1b30cc"
-  integrity sha512-ysooxfKhlVCWVwI2tL/DaNBk2y5LcAEod+q9PuLAcVx9RN3e0Fs0+MzigHY7oBPa+p+GDyTwKWkkwb3K9DA+uA==
+  resolved "git+https://github.com/andrew-rayco/react-timepicker.git#0cc6971971a58a57f7bfa7467a481b066108e8f2"
 
 react@^16.9.0:
   version "16.12.0"

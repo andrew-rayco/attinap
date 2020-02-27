@@ -35,4 +35,5 @@ The Babel configuration lives inside `package.json` and will override an externa
 
 # Notes
 
-Timepicker is [`react-timepicker`](https://github.com/radekmie/react-timepicker)
+Timepicker is forked from [`react-timepicker`](https://github.com/radekmie/react-timepicker) and updated to resolve issues with unsafe React component lifecycles.
+This app is now using the [`react-timepicker` forked repo](https://github.com/andrew-rayco/react-timepicker) on my GitHub account with the issues resolved (until React v17)
