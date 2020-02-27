@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1582765190167" clover="3.2.0">
-  <project timestamp="1582765190167" name="All files">
+<coverage generated="1582769850710" clover="3.2.0">
+  <project timestamp="1582769850710" name="All files">
     <metrics statements="8" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="2" elements="16" coveredelements="8" complexity="0" loc="8" ncloc="8" packages="1" files="2" classes="2"/>
     <file name="Button.js" path="/home/andrew/workspace/attinap/src/components/Button.js">
       <metrics statements="5" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="1"/>
