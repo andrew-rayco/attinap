@@ -15,13 +15,13 @@ exports[`TickTock snapshot 1`] = `
         <span
           class="timepicker-info-digits active"
         >
-          11
+          12
         </span>
         :
         <span
           class="timepicker-info-digits"
         >
-          50
+          13
         </span>
       </p>
       <svg
@@ -30,11 +30,11 @@ exports[`TickTock snapshot 1`] = `
       >
         <line
           class="timepicker-hand"
-          style="stroke-dasharray: 82; stroke-dashoffset: 0; transition-property: stroke-dashoffset;"
+          style="stroke-dasharray: 81; stroke-dashoffset: 0; transition-property: stroke-dashoffset;"
           x1="150"
-          x2="109"
+          x2="150"
           y1="150"
-          y2="80"
+          y2="69"
         />
         <line
           class="timepicker-hand"
@@ -198,7 +198,7 @@ exports[`TickTock snapshot 1`] = `
             </text>
           </g>
           <g
-            class="timepicker-bubble active"
+            class="timepicker-bubble"
           >
             <circle
               cx="109"
@@ -213,7 +213,7 @@ exports[`TickTock snapshot 1`] = `
             </text>
           </g>
           <g
-            class="timepicker-bubble"
+            class="timepicker-bubble active"
           >
             <circle
               cx="150"
@@ -597,12 +597,12 @@ exports[`TickTock snapshot 1`] = `
             />
           </g>
           <g
-            class="timepicker-bubble small"
+            class="timepicker-bubble small active"
           >
             <circle
               cx="272"
               cy="124"
-              r="0"
+              r="5"
             />
             <circle
               cx="272"
@@ -1122,7 +1122,7 @@ exports[`TickTock snapshot 1`] = `
             />
           </g>
           <g
-            class="timepicker-bubble active"
+            class="timepicker-bubble"
           >
             <circle
               cx="42"
