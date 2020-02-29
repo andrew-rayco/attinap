@@ -1,41 +1,53 @@
 {
-  "name": "attinap",
-  "version": "0.1.0",
-  "description": "",
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-timepicker": "^2.0.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "babel-preset-nano-react-app": "^0.1.0",
-    "parcel-bundler": "^1.12.3"
-  },
-  "babel": {
-    "presets": [
-      "nano-react-app"
-    ],
-    "plugins": [
-      [
-        "@babel/plugin-proposal-class-properties",
-        {
-          "loose": true
-        }
-      ],
-      [
-        "@babel/plugin-transform-react-jsx",
-        {
-          "pragmaFrag": "React.Fragment"
-        }
-      ]
-    ]
-  }
+    "name": "attinap",
+    "version": "0.1.0",
+    "description": "",
+    "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html",
+        "test": "jest --coverage --watchAll"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "moment": "^2.24.0",
+        "node-sass": "^4.13.1",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "react-timepicker": "git+https://github.com/andrew-rayco/react-timepicker.git"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.5.5",
+        "@babel/preset-env": "^7.8.4",
+        "@babel/preset-react": "^7.8.3",
+        "@testing-library/react": "^9.4.1",
+        "babel-jest": "^25.1.0",
+        "babel-preset-nano-react-app": "^0.1.0",
+        "jest": "^25.1.0",
+        "parcel-bundler": "^1.12.3",
+        "react-test-renderer": "^16.12.0"
+    },
+    "babel": {
+        "presets": [
+            "nano-react-app",
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ],
+        "plugins": [
+            [
+                "@babel/plugin-proposal-class-properties",
+                {
+                    "loose": true
+                }
+            ],
+            [
+                "@babel/plugin-transform-react-jsx",
+                {
+                    "pragmaFrag": "React.Fragment"
+                }
+            ]
+        ]
+    },
+    "engines": {
+        "node": "10"
+    }
 }
