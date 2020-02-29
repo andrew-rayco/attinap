@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button snapshot 1`] = `
+<div>
+  <div
+    class="btn undefined"
+  >
+    <button />
+    <p
+      class="light"
+    />
+    <p />
+    <div
+      class="manage-links"
+    >
+      <a
+        href="#"
+      >
+        Undo last
+      </a>
+      |
+      <a
+        href="#"
+      >
+        Add time
+      </a>
+    </div>
+  </div>
+</div>
+`;

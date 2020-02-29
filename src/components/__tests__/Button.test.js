@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Button from './Button'
+import Button from '../Button'
+import { render } from '@testing-library/react'
 
 test('Renders correct button text with closed clock', () => {
     const container = document.createElement('div')
@@ -34,4 +35,9 @@ test('Renders given time', () => {
     const container = document.createElement('div')
     ReactDOM.render(<Button time={'Sunday, 15:45:03 am'} />, container)
     expect(container.textContent).toMatch('Sunday, 15:45:03 am')
+})
+
+test('Button snapshot', () => {
+    const { container } = render(<Button />)
+    expect(container).toMatchSnapshot()
 })
