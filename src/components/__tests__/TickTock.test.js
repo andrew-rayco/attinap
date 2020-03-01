@@ -9,20 +9,10 @@ test('Renders button with `submit time` text', () => {
     expect(container.textContent).toMatch('Submit time')
 })
 
-// TODO Snapshot test fails because time is different when tests are run
-// Passing a hardcoded date doesn't seem to address it...
-// Skipping for now
-test.skip('TickTock snapshot', () => {
-    const date = new Date('2019-01-28, 00:44:35')
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
+// Only snapshotting button. No need to test Timepicker module
+test('TickTock button snapshot', () => {
+    const { getByText } = render(<TickTock />)
+    const submitTimeButton = getByText('Submit time')
 
-    const props = {
-        mode: true,
-        hours: hours,
-        minutes: minutes
-    }
-
-    const { container } = render(<TickTock {...props} />)
-    expect(container).toMatchSnapshot()
+    expect(submitTimeButton).toMatchSnapshot()
 })
