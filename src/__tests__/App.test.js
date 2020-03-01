@@ -1,11 +1,12 @@
 import React from 'react'
-import { render, renderIntoDocument, cleanup } from 'react-test-renderer'
+import { render, cleanup } from '@testing-library/react'
 import App from '../App'
 
-beforeEach(cleanup)
+beforeEach(() => cleanup())
 
-test('App renders successfully', () => {
-    const { container } = renderIntoDocument(<App />)
+test('App snapshot', () => {
+    const { container } = render(<App />)
+    console.log(container.innerHTML)
 
     expect(container).toMatchSnapshot()
 })

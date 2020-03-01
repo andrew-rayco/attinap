@@ -7,7 +7,7 @@ import TickTock from './components/TickTock'
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
 
-import { writeData, readData, deleteEntry } from './firebase'
+import { writeData, readData, deleteEntry } from './db-functions'
 
 class App extends Component {
     constructor(props) {

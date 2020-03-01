@@ -1,39 +1,15 @@
-let database = firebase.database()
+import firebase from 'firebase'
 
-export function writeData(date, name, timeArray) {
-    database.ref(`${date}/${name}`).set(timeArray, error => {
-        if (error) {
-            console.log('There has been a ballsup', error)
-        } else {
-            console.log('Data successfully saved')
-        }
-    })
+const firebaseConfig = {
+    apiKey: 'AIzaSyCb5zp9ElI0-OEcfQIZNBI_ND43leKwxVc',
+    authDomain: 'attinap2020.firebaseapp.com',
+    databaseURL: 'https://attinap2020.firebaseio.com',
+    projectId: 'attinap2020',
+    storageBucket: 'attinap2020.appspot.com',
+    messagingSenderId: '482919166374',
+    appId: '1:482919166374:web:615a4659ac11fb94445f67'
 }
 
-export function readData(date, callback) {
-    return database
-        .ref(`${date}`)
-        .once('value')
-        .then(
-            snapshot => {
-                callback(snapshot.val())
-            },
-            error => {
-                if (error) {
-                    console.log('There has been a ballsup', error)
-                } else {
-                    console.log('Data successfully saved')
-                }
-            }
-        )
-}
+firebase.initializeApp(firebaseConfig)
 
-export function deleteEntry(date, name, index) {
-    return database.ref(`${date}/${name}/${index}`).remove(error => {
-        if (error) {
-            console.log('There has been a ballsup', errror)
-        } else {
-            console.log('Data successfully deleted')
-        }
-    })
-}
+export default firebase
