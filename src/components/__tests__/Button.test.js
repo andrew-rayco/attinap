@@ -31,10 +31,11 @@ test('Renders given title', () => {
     expect(container.textContent).toMatch('Wormwood Industrial')
 })
 
-test('Renders given time', () => {
+test('Renders `no time yet today` if no time given', () => {
     const container = document.createElement('div')
-    ReactDOM.render(<Button time={'Sunday, 15:45:03 am'} />, container)
-    expect(container.textContent).toMatch('Sunday, 15:45:03 am')
+    ReactDOM.render(<Button time={'No time yet today'} />, container)
+
+    expect(container.textContent).toMatch('No time yet today')
 })
 
 test('Button snapshot', () => {

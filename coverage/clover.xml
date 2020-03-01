@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1583070946101" clover="3.2.0">
-  <project timestamp="1583070946101" name="All files">
-    <metrics statements="83" coveredstatements="24" conditionals="47" coveredconditionals="15" methods="38" coveredmethods="8" elements="168" coveredelements="47" complexity="0" loc="83" ncloc="83" packages="3" files="6" classes="6"/>
+<coverage generated="1583072155123" clover="3.2.0">
+  <project timestamp="1583072155123" name="All files">
+    <metrics statements="83" coveredstatements="25" conditionals="47" coveredconditionals="16" methods="38" coveredmethods="9" elements="168" coveredelements="50" complexity="0" loc="83" ncloc="83" packages="3" files="6" classes="6"/>
     <package name="src">
       <metrics statements="74" coveredstatements="20" conditionals="45" coveredconditionals="14" methods="32" coveredmethods="7"/>
       <file name="App.js" path="/home/andrew/workspace/attinap/src/App.js">
@@ -89,19 +89,19 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="8" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="1"/>
+      <metrics statements="8" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="2"/>
       <file name="Button.js" path="/home/andrew/workspace/attinap/src/components/Button.js">
-        <metrics statements="5" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="1"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <metrics statements="5" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
       </file>
       <file name="TickTock.js" path="/home/andrew/workspace/attinap/src/components/TickTock.js">
-        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
       </file>
     </package>
