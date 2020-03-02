@@ -1,74 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App snapshot 1`] = `
-<div>
+<div
+  class="main"
+>
+  <h1>
+    AttiNap
+  </h1>
+  <p>
+    Currently:
+  </p>
+  <h2>
+    He's awake
+  </h2>
   <div
-    class="main"
+    class="btn sleep-time"
   >
-    <h1>
-      AttiNap
-    </h1>
-    <p>
-      Currently:
+    <button>
+      Just went to sleep
+    </button>
+    <p
+      class="light"
+    >
+      No time yet today
     </p>
-    <h2>
-      He's awake
-    </h2>
+    <p />
     <div
-      class="btn sleep-time"
+      class="manage-links"
     >
-      <button>
-        Just went to sleep
-      </button>
-      <p
-        class="light"
+      <a
+        href="#"
       >
-        No time yet today
-      </p>
-      <p />
-      <div
-        class="manage-links"
+        Undo last
+      </a>
+      |
+      <a
+        href="#"
       >
-        <a
-          href="#"
-        >
-          Undo last
-        </a>
-        |
-        <a
-          href="#"
-        >
-          Add time
-        </a>
-      </div>
+        Add time
+      </a>
     </div>
-    <div
-      class="btn awake-time"
+  </div>
+  <div
+    class="btn awake-time"
+  >
+    <button>
+      Just woke up
+    </button>
+    <p
+      class="light"
     >
-      <button>
-        Just woke up
-      </button>
-      <p
-        class="light"
+      No time yet today
+    </p>
+    <p />
+    <div
+      class="manage-links"
+    >
+      <a
+        href="#"
       >
-        No time yet today
-      </p>
-      <p />
-      <div
-        class="manage-links"
+        Undo last
+      </a>
+      |
+      <a
+        href="#"
       >
-        <a
-          href="#"
-        >
-          Undo last
-        </a>
-        |
-        <a
-          href="#"
-        >
-          Add time
-        </a>
-      </div>
+        Add time
+      </a>
     </div>
   </div>
 </div>
