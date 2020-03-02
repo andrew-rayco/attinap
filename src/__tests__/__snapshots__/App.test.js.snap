@@ -21,6 +21,7 @@ exports[`App snapshot 1`] = `
     </button>
     <p
       class="light"
+      data-testid="time"
     >
       No time yet today
     </p>
@@ -49,6 +50,7 @@ exports[`App snapshot 1`] = `
     </button>
     <p
       class="light"
+      data-testid="time"
     >
       No time yet today
     </p>

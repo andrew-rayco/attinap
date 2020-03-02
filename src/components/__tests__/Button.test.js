@@ -38,6 +38,12 @@ test('Renders `no time yet today` if no time given', () => {
     expect(container.textContent).toMatch('No time yet today')
 })
 
+test('Renders time string if time given', () => {
+    const { getByTestId } = render(<Button time={'this is the time'} />)
+    const timeNode = getByTestId('time')
+    expect(timeNode.textContent).toEqual('this is the time')
+})
+
 test('Button snapshot', () => {
     const { container } = render(<Button />)
     expect(container).toMatchSnapshot()
