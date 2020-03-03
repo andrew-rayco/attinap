@@ -7,7 +7,8 @@ import TickTock from './components/TickTock'
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
 
-import { writeData, readData, deleteEntry } from './db-functions'
+import { writeData, readData, deleteEntry } from './datastore-functions'
+import { formatTime, formatAgo } from './utils'
 
 class App extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
         this.handleClockSubmit = this.handleClockSubmit.bind(this)
     }
 
+    // -- Datastore --
     getData() {
         const todaysDate = moment().format('YYYY-M-D')
         return readData(todaysDate, data => {
@@ -42,6 +44,16 @@ class App extends Component {
         })
     }
 
+    updateDataStore(date, time, newState) {
+        // Format time entries for datastore
+        const cleanState = newState.map(time => {
+            return moment(time).format()
+        })
+
+        writeData(date, time, cleanState)
+    }
+
+    // -- State --
     updateTime(time) {
         const now = new Date()
         const newState = this.state[time].concat(now)
@@ -51,20 +63,11 @@ class App extends Component {
         this.setState(
             {
                 [time]: newState,
-                [ago]: this.formatAgo(now),
+                [ago]: formatAgo(now),
                 currentStatus: time == 'awakeTime'
             },
-            this.updateDatabase(date, time, newState)
+            this.updateDataStore(date, time, newState)
         )
-    }
-
-    updateDatabase(date, time, newState) {
-        // Format time entries before pushing to realtime database
-        const cleanState = newState.map(time => {
-            return moment(time).format()
-        })
-
-        writeData(date, time, cleanState)
     }
 
     deleteLast(name) {
@@ -77,16 +80,6 @@ class App extends Component {
         currentState.pop()
 
         this.setState({ [name]: currentState })
-    }
-
-    formatTime(time) {
-        return time
-            ? moment(time).format('dddd, h:mm:ss a')
-            : 'No time yet today'
-    }
-
-    formatAgo(time) {
-        return time ? moment(time).fromNow() : ''
     }
 
     handleChange(hours, mins) {
@@ -122,10 +115,10 @@ class App extends Component {
                         awakeAgo
                     } = this.state
 
-                    const newSleepAgo = this.formatAgo(
+                    const newSleepAgo = formatAgo(
                         sleepTime[sleepTime.length - 1]
                     )
-                    const newAwakeAgo = this.formatAgo(
+                    const newAwakeAgo = formatAgo(
                         awakeTime[awakeTime.length - 1]
                     )
 
@@ -140,12 +133,7 @@ class App extends Component {
         }
     }
 
-    // Unsure if stopTimer is necessary as timer runs permanently,
-    // but here it is just in case. Because setInterval noob.
-    stopTimer() {
-        clearInterval(this.timerId)
-    }
-
+    // -- Render --
     renderTickTock(name) {
         return (
             <TickTock
@@ -178,11 +166,11 @@ class App extends Component {
                     {this.state.currentStatus ? "He's awake" : "He's asleep"}
                 </h2>
                 <Button
-                    time={this.formatTime(lastSleep)}
+                    time={formatTime(lastSleep)}
                     updateTime={() => this.updateTime('sleepTime')}
                     deleteLast={() => this.deleteLast('sleepTime')}
                     title={'Just went to sleep'}
-                    ago={this.formatAgo(lastSleep)}
+                    ago={formatAgo(lastSleep)}
                     className={'sleep-time'}
                     addTime={() => this.addTime('sleepClockOpen')}
                     isClockOpen={this.state.sleepClockOpen}
@@ -193,11 +181,11 @@ class App extends Component {
                     : null}
 
                 <Button
-                    time={this.formatTime(awakeTime[awakeTime.length - 1])}
+                    time={formatTime(awakeTime[awakeTime.length - 1])}
                     updateTime={() => this.updateTime('awakeTime')}
                     deleteLast={() => this.deleteLast('awakeTime')}
                     title={'Just woke up'}
-                    ago={this.formatAgo(lastWake)}
+                    ago={formatAgo(lastWake)}
                     className={'awake-time'}
                     addTime={() => this.addTime('awakeClockOpen')}
                     isClockOpen={this.state.awakeClockOpen}

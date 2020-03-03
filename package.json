@@ -5,7 +5,8 @@
     "scripts": {
         "start": "parcel index.html",
         "build": "parcel build index.html",
-        "test": "jest --coverage --watchAll"
+        "test": "jest --watchAll --verbose",
+        "test:coverage": "jest --coverage --watchAll"
     },
     "license": "MIT",
     "dependencies": {
