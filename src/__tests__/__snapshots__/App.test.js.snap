@@ -10,7 +10,9 @@ exports[`App snapshot 1`] = `
   <p>
     Currently:
   </p>
-  <h2>
+  <h2
+    data-testid="wake-status"
+  >
     He's awake
   </h2>
   <div

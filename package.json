@@ -6,7 +6,8 @@
         "start": "parcel index.html",
         "build": "parcel build index.html",
         "test": "jest --watchAll --verbose",
-        "test:coverage": "jest --coverage --watchAll"
+        "test:coverage": "jest --coverage --watchAll",
+        "test:leak": "jest -runInBand --detectOpenHandles"
     },
     "license": "MIT",
     "dependencies": {

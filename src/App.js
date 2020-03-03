@@ -162,7 +162,7 @@ class App extends Component {
             <div className="main">
                 <h1>AttiNap</h1>
                 <p>Currently:</p>
-                <h2>
+                <h2 data-testid="wake-status">
                     {this.state.currentStatus ? "He's awake" : "He's asleep"}
                 </h2>
                 <Button
