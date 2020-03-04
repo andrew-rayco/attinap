@@ -145,6 +145,11 @@ class App extends Component {
         )
     }
 
+    renderNoTime() {
+        // This smells, but works to stop the box jumping when time renders
+        return <span>&nbsp;</span>
+    }
+
     render() {
         const { sleepTime, awakeTime, hasCollectedData } = this.state
         const lastSleep = sleepTime ? sleepTime[sleepTime.length - 1] : null
@@ -170,7 +175,7 @@ class App extends Component {
                     updateTime={() => this.updateTime('sleepTime')}
                     deleteLast={() => this.deleteLast('sleepTime')}
                     title={'Just went to sleep'}
-                    ago={formatAgo(lastSleep)}
+                    ago={lastSleep ? formatAgo(lastSleep) : this.renderNoTime()}
                     className={'sleep-time'}
                     addTime={() => this.addTime('sleepClockOpen')}
                     isClockOpen={this.state.sleepClockOpen}
@@ -185,7 +190,7 @@ class App extends Component {
                     updateTime={() => this.updateTime('awakeTime')}
                     deleteLast={() => this.deleteLast('awakeTime')}
                     title={'Just woke up'}
-                    ago={formatAgo(lastWake)}
+                    ago={lastWake ? formatAgo(lastWake) : this.renderNoTime()}
                     className={'awake-time'}
                     addTime={() => this.addTime('awakeClockOpen')}
                     isClockOpen={this.state.awakeClockOpen}
