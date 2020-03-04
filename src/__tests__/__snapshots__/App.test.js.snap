@@ -27,7 +27,11 @@ exports[`App snapshot 1`] = `
     >
       No time yet today
     </p>
-    <p />
+    <p>
+      <span>
+         
+      </span>
+    </p>
     <div
       class="manage-links"
     >
@@ -56,7 +60,11 @@ exports[`App snapshot 1`] = `
     >
       No time yet today
     </p>
-    <p />
+    <p>
+      <span>
+         
+      </span>
+    </p>
     <div
       class="manage-links"
     >
