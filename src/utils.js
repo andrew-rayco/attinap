@@ -10,8 +10,10 @@ export function formatTime(time) {
 export function formatAgo(time) {
     const moTime = moment(time)
     const moNow = moment()
+
     // https://momentjs.com/docs/#/durations/diffing/
     const timeDiff = moment.duration(moNow.diff(moTime))
+
     // `moment-duration-format` allows this formatting with `x hrs, y mins`
     // https://github.com/jsmreese/moment-duration-format#template
     const humanise = moment
