@@ -19,7 +19,7 @@ test('Renders both Button components', () => {
 })
 
 test('Shows correct awake/asleep text', async () => {
-    const { getByTestId, getByText, Simulate } = render(<App />)
+    const { getByTestId, getByText } = render(<App />)
     const statusNode = getByTestId('wake-status')
     const sleepButtonNode = getByText('Just went to sleep')
 
@@ -28,4 +28,11 @@ test('Shows correct awake/asleep text', async () => {
     fireEvent.click(sleepButtonNode)
     await wait(resolve => setTimeout(resolve, 4500))
     expect(statusNode.textContent).toBe("He's asleep")
+})
+
+// TODO
+test.skip('TODO Shows existing time from datastore', () => {
+    const { getByText } = render(<App />)
+    // Just pass for now.
+    expect(getByText('AttiNap').textContent).toBe('AttiNap')
 })
