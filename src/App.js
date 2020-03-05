@@ -22,7 +22,7 @@ class App extends Component {
             awakeClockOpen: false,
             sleepAgo: '',
             awakeAgo: '',
-            currentStatus: true,
+            currentStatus: false,
             hasCollectedData: false
         }
 
