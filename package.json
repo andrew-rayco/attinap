@@ -4,6 +4,7 @@
     "description": "",
     "scripts": {
         "start": "parcel index.html",
+        "prebuild": "rm -rf dist",
         "build": "parcel build index.html",
         "test": "jest --watchAll --verbose",
         "test:coverage": "jest --coverage --watchAll",
