@@ -49,7 +49,6 @@ p {
 
 a {
     text-decoration: none;
-    // font-weight: 700;
 }
 
 .btn {
@@ -92,22 +91,24 @@ a {
 
 button {
     font-family: 'Fredoka One', cursive;
-    padding: 1.2em;
+    padding: 0.5em;
     border: 3px solid $snow;
     background: $lightGray;
     color: $grayBlue;
     min-width: 20vw;
     border-radius: 6px;
     font-size: 1.4em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .manage-links {
     margin-top: 1em;
     width: 50%;
+    min-width: 300px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-weight: 300;
+    font-size: 0.9em;
 }
 
 button:hover {
