@@ -17,6 +17,7 @@ body {
     padding: 1em;
     background: $lightGreen;
     color: $darkGrayBlue;
+    font-size: 0.8em;
 }
 
 .main {
@@ -103,8 +104,8 @@ button {
 
 .manage-links {
     margin-top: 1em;
-    width: 50%;
-    max-width: 300px;
+    width: 70%;
+    max-width: 400px;
     display: flex;
     justify-content: space-between;
     font-weight: 300;
