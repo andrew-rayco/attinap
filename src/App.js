@@ -154,8 +154,6 @@ class App extends Component {
     }
 
     deleteLast(name) {
-        console.log(name)
-
         let currentState = this.state[name]
         let index = currentState.length - 1
         const date = moment(new Date()).format('YYYY-M-D')
@@ -192,8 +190,6 @@ class App extends Component {
     startTimer() {
         if (this.state.sleepAgo !== '' || this.state.awakeAgo !== '') {
             if (!this.timerId) {
-                console.log('Timer is running')
-
                 this.timerId = setInterval(() => {
                     const {
                         sleepTime,
@@ -235,8 +231,6 @@ class App extends Component {
                     }
                 }, 46000)
             }
-        } else {
-            console.log('Timer is not running. There is nothing to count.')
         }
     }
 

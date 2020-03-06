@@ -1,11 +1,9 @@
 # TODO
 
--   Deleting last entry from Firebase ✔️
 -   Styles. Needs a lot of love.
 -   Nail down timepicker mode change (hrs to mins)
 -   More testing
--   When click awake button, sleep duration freezes so we can refer to how long he slept. Same for awake too, obvi.
--   [Dreamhost deploy?](https://help.dreamhost.com/hc/en-us/articles/216445197-Pushing-your-local-Git-repository-to-a-DreamHost-server-Linux-Mac-OS-X)
+-   [Dreamhost deploy workflow?](https://help.dreamhost.com/hc/en-us/articles/216445197-Pushing-your-local-Git-repository-to-a-DreamHost-server-Linux-Mac-OS-X)
 
 ## Additional features
 
@@ -13,3 +11,8 @@
 -   Store and View historic sleep times/durations
 -   Display this data visually
 -   Dark or light mode depending on current sleep status
+
+### Done
+
+-   Deleting last entry from Firebase ✔️
+-   When click awake button, sleep duration freezes so we can refer to how long he slept. Same for awake too, obvi. ✔️
