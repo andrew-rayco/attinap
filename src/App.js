@@ -16,12 +16,14 @@ class App extends Component {
         this.state = {
             sleepTime: [],
             awakeTime: [],
+            sleepAgo: '',
+            awakeAgo: '',
+            sleepFrozen: false,
+            awakeFrozen: false,
             clockEntries: [],
             timepickerMode: true,
             sleepClockOpen: false,
             awakeClockOpen: false,
-            sleepAgo: '',
-            awakeAgo: '',
             currentStatus: false,
             hasCollectedData: false
         }
@@ -40,13 +42,22 @@ class App extends Component {
                     awakeTime,
                     sleepTime
                 )
-                const awakeAgo = lastWake || ''
-                const sleepAgo = lastSleep || ''
+                const awakeAgo = formatAgo(lastWake) || ''
+                const sleepAgo = formatAgo(lastSleep) || ''
+                let awakeFrozen = false
+                let sleepFrozen = false
+                if (moment(lastWake).isAfter(moment(lastSleep))) {
+                    sleepFrozen = true
+                } else {
+                    awakeFrozen = true
+                }
                 this.setState({
                     awakeTime: awakeTime || [],
                     sleepTime: sleepTime || [],
                     awakeAgo,
                     sleepAgo,
+                    awakeFrozen,
+                    sleepFrozen,
                     hasCollectedData: true,
                     currentStatus: this.getCurrentSleepStatus(
                         lastWake,
@@ -70,6 +81,29 @@ class App extends Component {
         }
     }
 
+    getFrozen(type, newState) {
+        let { awakeTime, sleepTime } = this.state
+        if (type === 'sleepTime') {
+            sleepTime = newState
+        } else {
+            awakeTime = newState
+        }
+        const { lastWake, lastSleep } = this.getLastEvents(awakeTime, sleepTime)
+
+        let awakeFrozen = false
+        let sleepFrozen = false
+        if (lastWake && lastSleep) {
+            // find most recent event and freeze the other as is.
+            if (moment(lastWake).isAfter(moment(lastSleep))) {
+                sleepFrozen = true
+            } else {
+                awakeFrozen = true
+            }
+        }
+
+        return { sleepFrozen, awakeFrozen }
+    }
+
     // Return the most recent events from sleep and wake arrays (or null)
     getLastEvents(awakes, sleeps) {
         return {
@@ -84,12 +118,15 @@ class App extends Component {
         const newState = this.state[type].concat(now)
         const ago = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
         const date = moment(now).format('YYYY-M-D')
+        const { awakeFrozen, sleepFrozen } = this.getFrozen(type, newState)
 
         this.setState(
             {
                 [type]: newState,
                 [ago]: formatAgo(now),
-                currentStatus: type == 'awakeTime'
+                currentStatus: type == 'awakeTime',
+                awakeFrozen,
+                sleepFrozen
             },
             writeData(date, type, newState)
         )
@@ -142,17 +179,35 @@ class App extends Component {
                         awakeAgo
                     } = this.state
 
-                    const newSleepAgo = formatAgo(
-                        sleepTime[sleepTime.length - 1]
+                    const { lastWake, lastSleep } = this.getLastEvents(
+                        awakeTime,
+                        sleepTime
                     )
-                    const newAwakeAgo = formatAgo(
-                        awakeTime[awakeTime.length - 1]
-                    )
+
+                    let newAwakeAgo = formatAgo(lastWake)
+                    let newSleepAgo = formatAgo(lastSleep)
+                    let sleepFrozen = false
+                    let awakeFrozen = false
+
+                    if (lastWake && lastSleep) {
+                        // find most recent event and freeze the other as is.
+                        if (moment(lastWake).isAfter(moment(lastSleep))) {
+                            newSleepAgo = sleepAgo
+                            awakeFrozen = false
+                            sleepFrozen = true
+                        } else {
+                            newAwakeAgo = awakeAgo
+                            awakeFrozen = true
+                            sleepFrozen = false
+                        }
+                    }
 
                     if (newSleepAgo !== sleepAgo || newAwakeAgo !== awakeAgo) {
                         this.setState({
                             sleepAgo: newSleepAgo,
-                            awakeAgo: newAwakeAgo
+                            awakeAgo: newAwakeAgo,
+                            awakeFrozen,
+                            sleepFrozen
                         })
                     }
                 }, 46000)
@@ -179,9 +234,25 @@ class App extends Component {
         return <span>&nbsp;</span>
     }
 
+    renderAgo(type, ago, frozen) {
+        const text = type == 'sleepTime' ? 'Slept for' : 'Was awake for'
+        if (ago) {
+            return frozen ? `${text} ${ago}` : ago
+        }
+        return this.renderNoTime()
+    }
+
     render() {
-        const { sleepTime, awakeTime, hasCollectedData } = this.state
-        const { lastSleep, lastWake } = this.getLastEvents(awakeTime, sleepTime)
+        const {
+            awakeTime,
+            sleepTime,
+            awakeAgo,
+            sleepAgo,
+            awakeFrozen,
+            sleepFrozen,
+            hasCollectedData
+        } = this.state
+        const { lastWake, lastSleep } = this.getLastEvents(awakeTime, sleepTime)
         if (
             awakeTime.length == 0 &&
             sleepTime.length == 0 &&
@@ -203,7 +274,7 @@ class App extends Component {
                     updateTime={() => this.updateTime('sleepTime')}
                     deleteLast={() => this.deleteLast('sleepTime')}
                     title={'Just went to sleep'}
-                    ago={lastSleep ? formatAgo(lastSleep) : this.renderNoTime()}
+                    ago={this.renderAgo('sleepTime', sleepAgo, sleepFrozen)}
                     className={'sleep-time'}
                     addTime={() => this.addTime('sleepClockOpen')}
                     isClockOpen={this.state.sleepClockOpen}
@@ -214,11 +285,11 @@ class App extends Component {
                     : null}
 
                 <Button
-                    time={formatTime(awakeTime[awakeTime.length - 1])}
+                    time={formatTime(lastWake)}
                     updateTime={() => this.updateTime('awakeTime')}
                     deleteLast={() => this.deleteLast('awakeTime')}
                     title={'Just woke up'}
-                    ago={lastWake ? formatAgo(lastWake) : this.renderNoTime()}
+                    ago={this.renderAgo('awakeTime', awakeAgo, awakeFrozen)}
                     className={'awake-time'}
                     addTime={() => this.addTime('awakeClockOpen')}
                     isClockOpen={this.state.awakeClockOpen}
