@@ -4,7 +4,7 @@ import moment from 'moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 
 export function formatTime(time) {
-    return time ? moment(time).format('dddd, h:mm:ss a') : 'No time yet today'
+    return time ? moment(time).format('ddd, h:mm a') : 'No time yet today'
 }
 
 export function formatAgo(time) {

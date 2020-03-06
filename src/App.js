@@ -35,38 +35,34 @@ class App extends Component {
         const todaysDate = moment().format('YYYY-M-D')
         return readData(todaysDate, data => {
             if (data) {
+                const { awakeTime, sleepTime } = data
+                const awakeAgo = awakeTime[awakeTime.length - 1] || ''
+                const sleepAgo = sleepTime[sleepTime.length - 1] || ''
                 this.setState({
-                    awakeTime: data.awakeTime || [],
-                    sleepTime: data.sleepTime || [],
+                    awakeTime: awakeTime || [],
+                    sleepTime: sleepTime || [],
+                    awakeAgo,
+                    sleepAgo,
                     hasCollectedData: true
                 })
             }
         })
     }
 
-    updateDataStore(date, time, newState) {
-        // Format time entries for datastore
-        const cleanState = newState.map(time => {
-            return moment(time).format()
-        })
-
-        writeData(date, time, cleanState)
-    }
-
     // -- State --
-    updateTime(time) {
-        const now = new Date()
-        const newState = this.state[time].concat(now)
-        const ago = time === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
+    updateTime(type) {
+        const now = moment().format()
+        const newState = this.state[type].concat(now)
+        const ago = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
         const date = moment(now).format('YYYY-M-D')
 
         this.setState(
             {
-                [time]: newState,
+                [type]: newState,
                 [ago]: formatAgo(now),
-                currentStatus: time == 'awakeTime'
+                currentStatus: type == 'awakeTime'
             },
-            this.updateDataStore(date, time, newState)
+            writeData(date, type, newState)
         )
     }
 
@@ -107,6 +103,8 @@ class App extends Component {
     startTimer() {
         if (this.state.sleepAgo !== '' || this.state.awakeAgo !== '') {
             if (!this.timerId) {
+                console.log('Timer is running')
+
                 this.timerId = setInterval(() => {
                     const {
                         sleepTime,
@@ -130,6 +128,8 @@ class App extends Component {
                     }
                 }, 46000)
             }
+        } else {
+            console.log('Timer is not running. There is nothing to count.')
         }
     }
 
