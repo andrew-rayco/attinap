@@ -154,6 +154,8 @@ class App extends Component {
     }
 
     deleteLast(name) {
+        console.log(name)
+
         let currentState = this.state[name]
         let index = currentState.length - 1
         const date = moment(new Date()).format('YYYY-M-D')
@@ -259,7 +261,7 @@ class App extends Component {
         const text = type == 'sleepTime' ? 'Slept for' : 'Was awake for'
         if (frozen) {
             return `${text} ${frozenTime}`
-        } else if (ago) {
+        } else if (ago && this.state[type].length >= 1) {
             return ago
         }
         return this.renderNoTime()
