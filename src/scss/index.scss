@@ -14,8 +14,7 @@ body {
     font-family: 'Raleway', sans-serif;
     display: flex;
     justify-content: center;
-    padding: 1em;
-    background: $lightGreen;
+    margin: 0;
     color: $darkGrayBlue;
     font-size: 0.8em;
 }
@@ -23,7 +22,28 @@ body {
 .main {
     display: flex;
     flex-direction: column;
+    padding: 1em;
     align-items: center;
+    background: $lightGreen;
+    width: 100vw;
+    height: 100vh;
+    transition: 2s linear;
+}
+
+.dark {
+    background: $night;
+    transition: 2s linear;
+    color: $snow;
+
+    a {
+        color: $snow;
+        transition: 2s linear;
+    }
+
+    h2 {
+        color: $snow;
+        text-shadow: $grayBlue 2px 3px;
+    }
 }
 
 h1 {
@@ -50,6 +70,8 @@ p {
 
 a {
     text-decoration: none;
+    background: none;
+    transition: 2s linear;
 }
 
 .btn {
@@ -65,30 +87,30 @@ a {
     font-weight: 700;
 }
 
-.sleep-time {
-    background: $night;
-    color: $snow;
+// .sleep-time {
+//     background: $night;
+//     color: $snow;
 
-    a {
-        color: $snow;
-    }
+//     a {
+//         color: $snow;
+//     }
 
-    a:hover {
-        color: $lightGreen;
-    }
-}
+//     a:hover {
+//         color: $lightGreen;
+//     }
+// }
 
-.awake-time {
-    background: $skyBlue;
+// .awake-time {
+//     background: $skyBlue;
 
-    a {
-        color: $darkGrayBlue;
-    }
+//     a {
+//         color: $darkGrayBlue;
+//     }
 
-    a:hover {
-        color: $grayBlue;
-    }
-}
+//     a:hover {
+//         color: $grayBlue;
+//     }
+// }
 
 button {
     font-family: 'Fredoka One', cursive;
@@ -110,6 +132,8 @@ button {
     justify-content: space-between;
     font-weight: 300;
     font-size: 0.9em;
+    background: none;
+    transition: 2s linear;
 }
 
 button:hover {

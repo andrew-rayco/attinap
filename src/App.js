@@ -284,7 +284,7 @@ class App extends Component {
         this.startTimer()
 
         return (
-            <div className="main">
+            <div className={this.state.currentStatus ? `main` : `main dark`}>
                 <h1>AttiNap</h1>
                 <p>Currently:</p>
                 <h2 data-testid="wake-status">
