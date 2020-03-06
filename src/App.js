@@ -31,22 +31,51 @@ class App extends Component {
     }
 
     // -- Datastore --
-    getData() {
+    initialiseAndFetchData() {
         const todaysDate = moment().format('YYYY-M-D')
         return readData(todaysDate, data => {
             if (data) {
                 const { awakeTime, sleepTime } = data
-                const awakeAgo = awakeTime[awakeTime.length - 1] || ''
-                const sleepAgo = sleepTime[sleepTime.length - 1] || ''
+                const { lastWake, lastSleep } = this.getLastEvents(
+                    awakeTime,
+                    sleepTime
+                )
+                const awakeAgo = lastWake || ''
+                const sleepAgo = lastSleep || ''
                 this.setState({
                     awakeTime: awakeTime || [],
                     sleepTime: sleepTime || [],
                     awakeAgo,
                     sleepAgo,
-                    hasCollectedData: true
+                    hasCollectedData: true,
+                    currentStatus: this.getCurrentSleepStatus(
+                        lastWake,
+                        lastSleep
+                    )
                 })
             }
         })
+    }
+
+    // Determine current awake status by most recent event
+    getCurrentSleepStatus(wake, sleep) {
+        if (wake && sleep) {
+            return moment(wake).isAfter(moment(sleep))
+        } else if (wake && !sleep) {
+            return true
+        } else if (!wake && sleep) {
+            return false
+        } else {
+            return false
+        }
+    }
+
+    // Return the most recent events from sleep and wake arrays (or null)
+    getLastEvents(awakes, sleeps) {
+        return {
+            lastWake: awakes ? awakes[awakes.length - 1] : null,
+            lastSleep: sleeps ? sleeps[sleeps.length - 1] : null
+        }
     }
 
     // -- State --
@@ -152,14 +181,13 @@ class App extends Component {
 
     render() {
         const { sleepTime, awakeTime, hasCollectedData } = this.state
-        const lastSleep = sleepTime ? sleepTime[sleepTime.length - 1] : null
-        const lastWake = awakeTime ? awakeTime[awakeTime.length - 1] : null
+        const { lastSleep, lastWake } = this.getLastEvents(awakeTime, sleepTime)
         if (
             awakeTime.length == 0 &&
             sleepTime.length == 0 &&
             !hasCollectedData
         ) {
-            this.getData()
+            this.initialiseAndFetchData()
         }
         this.startTimer()
 
