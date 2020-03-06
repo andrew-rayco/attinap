@@ -22,3 +22,13 @@ export function formatAgo(time) {
 
     return time ? humanise : ''
 }
+
+export function getTimeDiff(before, after) {
+    const moBefore = moment(before)
+    const moAfter = moment(after)
+    const timeDiff = moment.duration(moAfter.diff(moBefore))
+    const humanise = moment
+        .duration(timeDiff, 'minutes')
+        .format('h [hrs], m [min]')
+    return humanise
+}
