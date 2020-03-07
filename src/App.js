@@ -130,8 +130,6 @@ class App extends Component {
 
     // -- State --
     updateTime(type) {
-        console.log('updateTime type', type)
-
         const now = moment().format()
         const newState = this.state[type].concat(now)
         const ago = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
@@ -175,15 +173,30 @@ class App extends Component {
     }
 
     handleClockSubmit(type) {
-        console.log('handleClockSubmit type', type)
-
         // take last entry from clockEntries and add to selected sleep/awake state
         const { clockEntries } = this.state
 
-        const newTime = moment(clockEntries[clockEntries.length - 1])
+        const newTime = moment(clockEntries[clockEntries.length - 1]).format()
+        const date = moment(newTime).format('YYYY-M-D')
         const newState = this.state[type].concat(newTime)
-        const toggle = type == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
-        this.setState({ [type]: newState, [toggle]: !this.state[toggle] })
+        const toggleType =
+            type == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
+        const { awakeFrozen, sleepFrozen, sleptFor, awakeFor } = this.getFrozen(
+            type,
+            newState
+        )
+        this.setState(
+            {
+                [type]: newState,
+                [toggleType]: !this.state[toggleType],
+                awakeFrozen,
+                sleepFrozen,
+                awakeFor,
+                sleptFor,
+                currentStatus: type == 'awakeTime'
+            },
+            writeData(date, type, newState)
+        )
     }
 
     addTime(type) {
