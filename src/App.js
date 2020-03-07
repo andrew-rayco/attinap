@@ -130,6 +130,8 @@ class App extends Component {
 
     // -- State --
     updateTime(type) {
+        console.log('updateTime type', type)
+
         const now = moment().format()
         const newState = this.state[type].concat(now)
         const ago = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
@@ -173,6 +175,8 @@ class App extends Component {
     }
 
     handleClockSubmit(name) {
+        console.log('handleClockSubmit name', name)
+
         // take last entry from clockEntries and add to selected sleep/awake state
         const { clockEntries } = this.state
 
@@ -284,51 +288,61 @@ class App extends Component {
         this.startTimer()
 
         return (
-            <div className={this.state.currentStatus ? `main` : `main dark`}>
-                <h1>AttiNap</h1>
-                <p>Currently:</p>
-                <h2 data-testid="wake-status">
-                    {this.state.currentStatus ? "He's awake" : "He's asleep"}
-                </h2>
-                <Button
-                    time={formatTime(lastSleep)}
-                    updateTime={() => this.updateTime('sleepTime')}
-                    deleteLast={() => this.deleteLast('sleepTime')}
-                    title={'Just went to sleep'}
-                    ago={this.renderAgo(
-                        'sleepTime',
-                        sleepAgo,
-                        sleepFrozen,
-                        sleptFor
-                    )}
-                    className={'sleep-time'}
-                    addTime={() => this.addTime('sleepClockOpen')}
-                    isClockOpen={this.state.sleepClockOpen}
-                />
+            <div
+                className={
+                    this.state.currentStatus ? `container` : `container dark`
+                }
+            >
+                <div
+                    className={this.state.currentStatus ? `main` : `main dark`}
+                >
+                    <h1>AttiNap</h1>
+                    <p>Currently:</p>
+                    <h2 data-testid="wake-status">
+                        {this.state.currentStatus
+                            ? "He's awake"
+                            : "He's asleep"}
+                    </h2>
+                    <Button
+                        time={formatTime(lastSleep)}
+                        updateTime={() => this.updateTime('sleepTime')}
+                        deleteLast={() => this.deleteLast('sleepTime')}
+                        title={'Just went to sleep'}
+                        ago={this.renderAgo(
+                            'sleepTime',
+                            sleepAgo,
+                            sleepFrozen,
+                            sleptFor
+                        )}
+                        className={'sleep-time'}
+                        addTime={() => this.addTime('sleepClockOpen')}
+                        isClockOpen={this.state.sleepClockOpen}
+                    />
 
-                {this.state.sleepClockOpen
-                    ? this.renderTickTock('sleepTime')
-                    : null}
+                    {this.state.sleepClockOpen
+                        ? this.renderTickTock('sleepTime')
+                        : null}
 
-                <Button
-                    time={formatTime(lastWake)}
-                    updateTime={() => this.updateTime('awakeTime')}
-                    deleteLast={() => this.deleteLast('awakeTime')}
-                    title={'Just woke up'}
-                    ago={this.renderAgo(
-                        'awakeTime',
-                        awakeAgo,
-                        awakeFrozen,
-                        awakeFor
-                    )}
-                    className={'awake-time'}
-                    addTime={() => this.addTime('awakeClockOpen')}
-                    isClockOpen={this.state.awakeClockOpen}
-                />
+                    <Button
+                        time={formatTime(lastWake)}
+                        updateTime={() => this.updateTime('awakeTime')}
+                        deleteLast={() => this.deleteLast('awakeTime')}
+                        title={'Just woke up'}
+                        ago={this.renderAgo(
+                            'awakeTime',
+                            awakeAgo,
+                            awakeFrozen,
+                            awakeFor
+                        )}
+                        className={'awake-time'}
+                        addTime={() => this.addTime('awakeClockOpen')}
+                        isClockOpen={this.state.awakeClockOpen}
+                    />
 
-                {this.state.awakeClockOpen
-                    ? this.renderTickTock('awakeTime')
-                    : null}
+                    {this.state.awakeClockOpen
+                        ? this.renderTickTock('awakeTime')
+                        : null}
+                </div>
             </div>
         )
     }

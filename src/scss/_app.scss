@@ -1,0 +1,123 @@
+$lightGreen: #c5d86d;
+$darkerGreen: #a2b15a;
+$grayBlue: #8c86aa;
+$darkGrayBlue: #4d485d;
+$snow: #fcf7f8;
+$lightGray: #ced3dc;
+$wildBlueYonder: #aba9c3;
+$skyBlue: #6dc5d8;
+$night: #581845;
+// Palette source:
+// https://coolors.co/c5d86d-8c86aa-fcf7f8-ced3dc-aba9c3
+
+.container {
+    background: $lightGreen;
+    height: 100%;
+    transition: background 2s linear;
+}
+
+.main {
+    font-family: 'Raleway', sans-serif;
+    color: $darkGrayBlue;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: stretch;
+    padding: 1em;
+    background: $lightGreen;
+    transition: background 2s linear, color 2s linear;
+}
+
+.dark {
+    background: $night;
+    color: $snow;
+
+    a {
+        color: $snow;
+        transition: background 2s linear, color 2s linear;
+    }
+
+    h2 {
+        color: $snow;
+        text-shadow: $grayBlue 2px 3px;
+    }
+}
+
+h1 {
+    font-size: 5em;
+    margin: 0 0 0.3em;
+    color: $snow;
+    text-shadow: $grayBlue 4px 5px;
+}
+
+h2 {
+    font-family: 'Fredoka One', cursive;
+    font-weight: 300;
+    margin-top: 0;
+    font-size: 2em;
+    color: $grayBlue;
+    text-shadow: $snow 2px 3px;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0.3em 0;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    background: none;
+    transition: color 2s linear;
+}
+
+.btn {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 1em;
+    width: 75vw;
+    max-width: 400px;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+button {
+    font-family: 'Fredoka One', cursive;
+    padding: 0.5em;
+    border: 3px solid $snow;
+    background: $lightGray;
+    color: $grayBlue;
+    min-width: 20vw;
+    border-radius: 6px;
+    font-size: 1.4em;
+    margin-bottom: 0.5em;
+}
+
+.manage-links {
+    margin-top: 1em;
+    width: 70%;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: 0.9em;
+    background: none;
+    transition: color 2s linear;
+}
+
+button:hover {
+    border: 3px solid $lightGray;
+    background: $snow;
+    transition: all 0.8s;
+    cursor: pointer;
+}
+
+.light {
+    font-weight: 100;
+}

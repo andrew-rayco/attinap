@@ -3,6 +3,7 @@
 -   Styles. Needs a lot of love.
 -   Nail down timepicker mode change (hrs to mins)
 -   More testing
+-   Poll the server every ?minute? so userA sees userB changes without needing to refresh.
 -   [Dreamhost deploy workflow?](https://help.dreamhost.com/hc/en-us/articles/216445197-Pushing-your-local-Git-repository-to-a-DreamHost-server-Linux-Mac-OS-X)
 
 ## Additional features
