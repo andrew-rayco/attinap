@@ -18,7 +18,8 @@
         "node-sass": "^4.13.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
-        "react-timepicker": "git+https://github.com/andrew-rayco/react-timepicker.git"
+        "react-timepicker": "git+https://github.com/andrew-rayco/react-timepicker.git",
+        "snapsvg": "^0.5.1"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",

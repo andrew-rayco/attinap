@@ -1,0 +1,70 @@
+.svg-wrapper {
+    width: 500px;
+    // border: 15px solid rgba(0, 0, 0, 0.05);
+    // box-shadow: 0px 4px 1px 0px #1972C5;
+    margin: 0px auto;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    background-color: dodgerblue;
+}
+
+.sunmoon-container {
+    width: 150px;
+}
+
+span {
+    font-family: 'Comfortaa', cursive;
+}
+
+.bg-night {
+    background: #1e6388 !important;
+}
+
+/*************** SVG styles **************/
+
+svg {
+    padding: 10px;
+}
+
+#sun {
+    fill: #ffec50;
+    transition: fill 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.sunRays {
+    fill: #fff284;
+}
+
+#starGroup {
+    fill: #ffec50;
+}
+
+#star1 {
+    opacity: 0;
+}
+
+#star2 {
+    opacity: 0;
+}
+
+#star3 {
+    opacity: 0;
+}
+
+@media (max-width: 499px) {
+    #wraper {
+        width: 65% !important;
+        height: 320px;
+        flex-direction: column;
+    }
+
+    #text {
+        font-size: 1em !important;
+    }
+
+    #container {
+        align-self: center;
+        margin-right: 1.5em;
+    }
+}

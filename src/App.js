@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import Button from './components/Button'
 import TickTock from './components/TickTock'
+import SunMoon from './components/SunMoon'
 
 import 'react-timepicker/timepicker.css'
 import './scss/index.scss'
@@ -315,6 +316,7 @@ class App extends Component {
                             ? "He's awake"
                             : "He's asleep"}
                     </h2>
+                    <SunMoon />
                     <Button
                         time={formatTime(lastSleep)}
                         updateTime={() => this.updateTime('sleepTime')}
