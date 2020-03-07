@@ -12,9 +12,9 @@
 -   Display and edit list of entries for today
 -   Store and View historic sleep times/durations
 -   Display this data visually
--   Dark or light mode depending on current sleep status
 
 ### Done
 
 -   Deleting last entry from Firebase ✔️
 -   When click awake button, sleep duration freezes so we can refer to how long he slept. Same for awake too, obvi. ✔️
+-   Dark or light mode depending on current sleep status ✔️
