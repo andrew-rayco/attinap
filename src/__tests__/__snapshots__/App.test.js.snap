@@ -2,83 +2,87 @@
 
 exports[`App snapshot 1`] = `
 <div
-  class="main"
+  class="container dark"
 >
-  <h1>
-    AttiNap
-  </h1>
-  <p>
-    Currently:
-  </p>
-  <h2
-    data-testid="wake-status"
-  >
-    He's awake
-  </h2>
   <div
-    class="btn sleep-time"
+    class="main dark"
   >
-    <button>
-      Just went to sleep
-    </button>
-    <p
-      class="light"
-      data-testid="time"
-    >
-      No time yet today
-    </p>
+    <h1>
+      AttiNap
+    </h1>
     <p>
-      <span>
-         
-      </span>
+      Currently:
     </p>
-    <div
-      class="manage-links"
+    <h2
+      data-testid="wake-status"
     >
-      <a
-        href="#"
+      He's asleep
+    </h2>
+    <div
+      class="btn sleep-time"
+    >
+      <button>
+        Just went to sleep
+      </button>
+      <p
+        class="light"
+        data-testid="time"
       >
-        Undo last
-      </a>
-      |
-      <a
-        href="#"
+        No time yet today
+      </p>
+      <p>
+        <span>
+           
+        </span>
+      </p>
+      <div
+        class="manage-links"
       >
-        Add time
-      </a>
+        <a
+          href="#"
+        >
+          Undo last
+        </a>
+        |
+        <a
+          href="#"
+        >
+          Add time
+        </a>
+      </div>
     </div>
-  </div>
-  <div
-    class="btn awake-time"
-  >
-    <button>
-      Just woke up
-    </button>
-    <p
-      class="light"
-      data-testid="time"
-    >
-      No time yet today
-    </p>
-    <p>
-      <span>
-         
-      </span>
-    </p>
     <div
-      class="manage-links"
+      class="btn awake-time"
     >
-      <a
-        href="#"
+      <button>
+        Just woke up
+      </button>
+      <p
+        class="light"
+        data-testid="time"
       >
-        Undo last
-      </a>
-      |
-      <a
-        href="#"
+        No time yet today
+      </p>
+      <p>
+        <span>
+           
+        </span>
+      </p>
+      <div
+        class="manage-links"
       >
-        Add time
-      </a>
+        <a
+          href="#"
+        >
+          Undo last
+        </a>
+        |
+        <a
+          href="#"
+        >
+          Add time
+        </a>
+      </div>
     </div>
   </div>
 </div>
