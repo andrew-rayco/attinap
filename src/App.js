@@ -155,16 +155,16 @@ class App extends Component {
         )
     }
 
-    deleteLast(name) {
-        let currentState = this.state[name]
+    deleteLast(type) {
+        let currentState = this.state[type]
         let index = currentState.length - 1
         const date = moment(new Date()).format('YYYY-M-D')
 
-        deleteEntry(date, name, index)
+        deleteEntry(date, type, index)
 
         currentState.pop()
 
-        this.setState({ [name]: currentState })
+        this.setState({ [type]: currentState })
     }
 
     handleChange(hours, mins) {
@@ -174,20 +174,20 @@ class App extends Component {
         this.setState({ clockEntries: newState, timepickerMode: false })
     }
 
-    handleClockSubmit(name) {
-        console.log('handleClockSubmit name', name)
+    handleClockSubmit(type) {
+        console.log('handleClockSubmit type', type)
 
         // take last entry from clockEntries and add to selected sleep/awake state
         const { clockEntries } = this.state
 
         const newTime = moment(clockEntries[clockEntries.length - 1])
-        const newState = this.state[name].concat(newTime)
-        const toggle = name == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
-        this.setState({ [name]: newState, [toggle]: !this.state[toggle] })
+        const newState = this.state[type].concat(newTime)
+        const toggle = type == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
+        this.setState({ [type]: newState, [toggle]: !this.state[toggle] })
     }
 
-    addTime(name) {
-        this.setState({ [name]: !this.state[name] })
+    addTime(type) {
+        this.setState({ [type]: !this.state[type] })
     }
 
     // Polls every 46 seconds (moment fromNow() changes at 45) to auto-update agos
@@ -239,13 +239,13 @@ class App extends Component {
     }
 
     // -- Render --
-    renderTickTock(name) {
+    renderTickTock(type) {
         return (
             <TickTock
                 mode={this.state.timepickerMode}
                 handleChange={(hours, mins) => this.handleChange(hours, mins)}
                 timepickerMode={this.state.timepickerMode}
-                handleClockSubmit={() => this.handleClockSubmit(name)}
+                handleClockSubmit={() => this.handleClockSubmit(type)}
             />
         )
     }
