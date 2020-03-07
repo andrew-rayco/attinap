@@ -3,8 +3,6 @@ import firebase from './firebase'
 const database = firebase.database()
 
 export function writeData(date, name, timeArray) {
-    console.log(date, name, timeArray)
-
     database.ref(`${date}/${name}`).set(timeArray, error => {
         if (error) {
             console.log('There has been a ballsup', error)

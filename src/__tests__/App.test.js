@@ -31,8 +31,8 @@ test('Shows correct awake/asleep text', async () => {
 })
 
 // TODO
-test.skip('TODO Shows existing time from datastore', () => {
-    const { getByText } = render(<App />)
-    // Just pass for now.
-    expect(getByText('AttiNap').textContent).toBe('AttiNap')
-})
+// test.skip('TODO Shows existing time from datastore', () => {
+//     const { getByText } = render(<App />)
+//     // Just pass for now.
+//     expect(getByText('AttiNap').textContent).toBe('AttiNap')
+// })
