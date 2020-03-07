@@ -27,7 +27,7 @@ class SunMoon extends Component {
     stars(t, o, d) {
         let { star1, star2, star3, starGroup } = this.refs
         // let ss = Snap.select('#starGroup')
-        console.log(starGroup, t)
+        console.log(starGroup, t, o)
 
         starGroup.animate({ transform: t }, 500, mina.easeinout)
         star1.animate({ opacity: o }, Number(d[0]), mina.backin)
