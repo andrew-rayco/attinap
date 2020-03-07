@@ -229,12 +229,10 @@ class App extends Component {
                         // find most recent event and freeze the other as is.
                         if (moment(lastWake).isAfter(moment(lastSleep))) {
                             newSleepAgo = sleepAgo
-                            awakeFrozen = false
                             sleepFrozen = true
                         } else {
                             newAwakeAgo = awakeAgo
                             awakeFrozen = true
-                            sleepFrozen = false
                         }
                     }
 
@@ -249,6 +247,7 @@ class App extends Component {
                 }, 46000)
             }
         }
+        this.initialiseAndFetchData()
     }
 
     // -- Render --
