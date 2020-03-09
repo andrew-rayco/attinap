@@ -1,14 +1,18 @@
-$lightGreen: #c5d86d;
+// $lightGreen: #c5d86d;
+$lightGreen: #5fb6cc;
 $darkerGreen: #a2b15a;
 $grayBlue: #8c86aa;
 $darkGrayBlue: #4d485d;
-$snow: #fcf7f8;
+// $snow: #fcf7f8;
+$snow: white;
 $lightGray: #ced3dc;
 $wildBlueYonder: #aba9c3;
 $skyBlue: #6dc5d8;
-$night: #581845;
+// $night: #581845;
+$night: #0d0535;
 // Palette source:
 // https://coolors.co/c5d86d-8c86aa-fcf7f8-ced3dc-aba9c3
+// ... or is it?
 
 .container {
     background: $lightGreen;
