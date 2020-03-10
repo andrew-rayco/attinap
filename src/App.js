@@ -270,7 +270,13 @@ class App extends Component {
     renderAgo(type, ago, frozen, frozenTime) {
         const text = type == 'sleepTime' ? 'Slept for' : 'Was awake for'
         if (frozen) {
-            return `${text} ${frozenTime}`
+            return (
+                <span>
+                    {`${text}:`}
+                    <br />
+                    {frozenTime}
+                </span>
+            )
         } else if (ago && this.state[type].length >= 1) {
             return ago
         }
