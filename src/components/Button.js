@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Button = props => {
     return (
@@ -19,6 +20,15 @@ const Button = props => {
             </div>
         </div>
     )
+}
+
+Button.propTypes = {
+    className: PropTypes.string.isRequired,
+    updateTime: PropTypes.func.isRequired,
+    deleteLast: PropTypes.func.isRequired,
+    addTime: PropTypes.func.isRequired,
+    time: PropTypes.string.isRequired,
+    isClockOpen: PropTypes.bool.isRequired
 }
 
 export default Button
