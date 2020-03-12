@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Timepicker } from 'react-timepicker'
 
 const TickTock = props => {
@@ -13,6 +14,11 @@ const TickTock = props => {
             />
         </div>
     )
+}
+
+TickTock.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    handleClockSubmit: PropTypes.func.isRequired
 }
 
 export default TickTock
