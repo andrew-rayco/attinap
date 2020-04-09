@@ -76,7 +76,10 @@ class App extends Component {
             currentStatus: this.getCurrentSleepStatus(lastWake, lastSleep)
           },
           () => {
-            if (awakeTime.length !== 0 || sleepTime.length !== 0) {
+            if (
+              (awakeTime && awakeTime.length !== 0) ||
+              (sleepTime && sleepTime.length !== 0)
+            ) {
               this.startTimer()
             }
           }
