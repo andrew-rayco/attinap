@@ -3,13 +3,15 @@
 exports[`Button snapshot 1`] = `
 <div>
   <div
-    class="btn undefined"
+    class="btn cheese"
   >
     <button />
     <p
       class="light"
       data-testid="time"
-    />
+    >
+      This is the time
+    </p>
     <p />
     <div
       class="manage-links"
