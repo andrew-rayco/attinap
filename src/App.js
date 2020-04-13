@@ -206,7 +206,7 @@ class App extends Component {
     )
   }
 
-  addTime(type) {
+  toggleClock(type) {
     this.setState({ [type]: !this.state[type] })
   }
 
@@ -306,29 +306,33 @@ class App extends Component {
           <h2 data-testid="wake-status">
             {this.state.currentStatus ? "He's awake" : "He's asleep"}
           </h2>
-          <Button
-            time={formatTime(lastSleep)}
-            updateTime={() => this.updateTime('sleepTime')}
-            deleteLast={() => this.deleteLast('sleepTime')}
-            title={'Just went to sleep'}
-            ago={this.renderAgo('sleepTime', sleepAgo, sleepFrozen, sleptFor)}
-            className={'sleep-time'}
-            addTime={() => this.addTime('sleepClockOpen')}
-            isClockOpen={this.state.sleepClockOpen}
-          />
+          <div className="actions">
+            <Button
+              time={formatTime(lastSleep)}
+              updateTime={() => this.updateTime('sleepTime')}
+              deleteLast={() => this.deleteLast('sleepTime')}
+              title={'Just went to sleep'}
+              ago={this.renderAgo('sleepTime', sleepAgo, sleepFrozen, sleptFor)}
+              className={'sleep-time'}
+              toggleClock={() => this.toggleClock('sleepClockOpen')}
+              isClockOpen={this.state.sleepClockOpen}
+            />
 
-          {this.state.sleepClockOpen ? this.renderTickTock('sleepTime') : null}
+            {this.state.sleepClockOpen
+              ? this.renderTickTock('sleepTime')
+              : null}
 
-          <Button
-            time={formatTime(lastWake)}
-            updateTime={() => this.updateTime('awakeTime')}
-            deleteLast={() => this.deleteLast('awakeTime')}
-            title={'Just woke up'}
-            ago={this.renderAgo('awakeTime', awakeAgo, awakeFrozen, awakeFor)}
-            className={'awake-time'}
-            addTime={() => this.addTime('awakeClockOpen')}
-            isClockOpen={this.state.awakeClockOpen}
-          />
+            <Button
+              time={formatTime(lastWake)}
+              updateTime={() => this.updateTime('awakeTime')}
+              deleteLast={() => this.deleteLast('awakeTime')}
+              title={'Just woke up'}
+              ago={this.renderAgo('awakeTime', awakeAgo, awakeFrozen, awakeFor)}
+              className={'awake-time'}
+              toggleClock={() => this.toggleClock('awakeClockOpen')}
+              isClockOpen={this.state.awakeClockOpen}
+            />
+          </div>
 
           {this.state.awakeClockOpen ? this.renderTickTock('awakeTime') : null}
         </div>
