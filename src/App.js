@@ -140,7 +140,7 @@ class App extends Component {
   updateTime(type) {
     const now = moment().format()
     const newState = this.state[type].concat(now)
-    const ago = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
+    const agoType = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
     const date = moment(now).format('YYYY-M-D')
     const { awakeFrozen, sleepFrozen, sleptFor, awakeFor } = this.getFrozen(
       type,
@@ -150,12 +150,12 @@ class App extends Component {
     this.setState(
       {
         [type]: newState,
-        [ago]: formatAgo(now),
+        [agoType]: formatAgo(now),
         currentStatus: type == 'awakeTime',
-        awakeFrozen,
-        sleepFrozen,
+        awakeFor,
         sleptFor,
-        awakeFor
+        awakeFrozen,
+        sleepFrozen
       },
       writeData(date, type, newState)
     )
@@ -188,6 +188,7 @@ class App extends Component {
     const date = moment(newTime).format('YYYY-M-D')
     const newState = this.state[type].concat(newTime)
     const toggleType = type == 'sleepTime' ? 'sleepClockOpen' : 'awakeClockOpen'
+    const agoType = type === 'sleepTime' ? 'sleepAgo' : 'awakeAgo'
     const { awakeFrozen, sleepFrozen, sleptFor, awakeFor } = this.getFrozen(
       type,
       newState
@@ -195,12 +196,13 @@ class App extends Component {
     this.setState(
       {
         [type]: newState,
-        [toggleType]: !this.state[toggleType],
-        awakeFrozen,
-        sleepFrozen,
+        [agoType]: formatAgo(newTime),
+        currentStatus: type == 'awakeTime',
         awakeFor,
         sleptFor,
-        currentStatus: type == 'awakeTime'
+        awakeFrozen,
+        sleepFrozen,
+        [toggleType]: !this.state[toggleType]
       },
       writeData(date, type, newState)
     )
