@@ -51,6 +51,7 @@ class App extends Component {
         let sleepFrozen = false
         let sleptFor = ''
         let awakeFor = ''
+
         // If events of both type exist, find difference between latest of each
         // and allocate an ago string to `sleptFor` or `awakeFor` accordingly
         if (lastWake && lastSleep) {

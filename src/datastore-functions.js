@@ -16,10 +16,26 @@ export function readData(date, yesterday, callback) {
     .once('value')
     .then(
       snapshot => {
-        let lastNightBedTime = { awakeTime: [], sleepTime: [] }
         if (snapshot.val()) {
-          callback(snapshot.val())
+          let times = snapshot.val()
+
+          if (times.sleepTime) {
+            callback(times)
+          } else {
+            // Add last night bedtime if no sleeptime yet today
+            return database
+              .ref(`${yesterday}`)
+              .once('value')
+              .then(yest => {
+                const aDayAgo = yest.val()
+                times.sleepTime = [
+                  aDayAgo.sleepTime[aDayAgo.sleepTime.length - 1]
+                ]
+              })
+              .then(() => callback(times))
+          }
         } else {
+          let lastNightBedTime = { awakeTime: [], sleepTime: [] }
           database
             .ref(`${yesterday}`)
             .once('value')
