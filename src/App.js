@@ -163,15 +163,40 @@ class App extends Component {
   }
 
   deleteLast(type) {
-    let currentState = this.state[type]
-    let index = currentState.length - 1
+    let typeState = this.state[type]
+    let index = typeState.length - 1
     const date = moment(new Date()).format('YYYY-M-D')
 
+    // Remove last entry from dataStore
     deleteEntry(date, type, index)
 
-    currentState.pop()
+    // Remove last entry from state entries
+    typeState.pop()
 
-    this.setState({ [type]: currentState })
+    // == Update State ==
+    // Calculates updated 'awake for'/'slept for' after entry removal
+    const { awakeFrozen, sleepFrozen, sleptFor, awakeFor } = this.getFrozen(
+      type,
+      typeState
+    )
+
+    // Get latest time for sleep and awake to determine new currentStatus
+    let { awakeTime, sleepTime } = this.state
+    if (type === 'sleepTime') {
+      sleepTime = typeState
+    } else {
+      awakeTime = typeState
+    }
+    const { lastWake, lastSleep } = this.getLastEvents(awakeTime, sleepTime)
+
+    this.setState({
+      [type]: typeState,
+      currentStatus: moment(lastWake).isAfter(moment(lastSleep)),
+      awakeFrozen,
+      sleepFrozen,
+      sleptFor,
+      awakeFor
+    })
   }
 
   handleChange(hours, mins) {
@@ -277,7 +302,13 @@ class App extends Component {
         </span>
       )
     } else if (ago && this.state[type].length >= 1) {
-      return ago
+      return (
+        <span>
+          &nbsp;
+          <br />
+          {`${ago}`}
+        </span>
+      )
     }
     return this.renderNoTime()
   }
@@ -335,9 +366,11 @@ class App extends Component {
               toggleClock={() => this.toggleClock('awakeClockOpen')}
               isClockOpen={this.state.awakeClockOpen}
             />
-          </div>
 
-          {this.state.awakeClockOpen ? this.renderTickTock('awakeTime') : null}
+            {this.state.awakeClockOpen
+              ? this.renderTickTock('awakeTime')
+              : null}
+          </div>
         </div>
       </div>
     )
