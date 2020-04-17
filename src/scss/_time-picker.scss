@@ -1,45 +1,46 @@
 // Timepicker styles
 
 .time-picker {
-    // flex-grow: 1;
-    border-radius: 6px;
-    border: 3px solid $wildBlueYonder;
-    background: $snow;
-    padding: 1em 1em 2em;
-    margin-top: 1em;
-    // margin-bottom: 2em;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    max-width: 500px;
-    text-align: center;
+  // flex-grow: 1;
+  border-radius: 6px;
+  border: 3px solid $wildBlueYonder;
+  background: $snow;
+  padding: 1em 1em 2em;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  width: 85%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .time-picker button {
-    padding: 1em;
-    font-size: 1em;
-    min-width: 15vw;
-    border: 3px solid $wildBlueYonder;
-    margin: 1em auto;
+  padding: 1em;
+  font-size: 1em;
+  min-width: 15vw;
+  border: 3px solid $wildBlueYonder;
+  margin: 1em auto;
 }
 
 .timepicker-bubble circle {
-    fill: $grayBlue;
+  fill: $grayBlue;
 }
 
 .timepicker-hand {
-    stroke: $grayBlue;
+  stroke: $grayBlue;
 }
 
 .timepicker-bubble.small.active circle,
 .timepicker-bubble.active circle {
-    fill: $darkGrayBlue;
+  fill: $darkGrayBlue;
 }
 
 .timepicker-info-digits.active {
-    color: $darkerGreen;
+  color: $darkerGreen;
 }
 
 .timepicker-bubble:hover circle {
-    fill: $darkerGreen;
+  fill: $darkerGreen;
 }

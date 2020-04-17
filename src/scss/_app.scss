@@ -1,127 +1,155 @@
-// $lightGreen: #c5d86d;
-$lightGreen: #5fb6cc;
 $darkerGreen: #a2b15a;
 $grayBlue: #8c86aa;
 $darkGrayBlue: #4d485d;
-// $snow: #fcf7f8;
-$snow: white;
+$snow: #fcf7f8;
 $lightGray: #ced3dc;
 $wildBlueYonder: #aba9c3;
-$skyBlue: #6dc5d8;
-// $night: #581845;
-$night: #0d0535;
-// Palette source:
-// https://coolors.co/c5d86d-8c86aa-fcf7f8-ced3dc-aba9c3
-// ... or is it?
+
+// New Colours - Gradients
+$dayColor: #83a4d4; /* fallback for old browsers */
+$dayGradWebKit: -webkit-linear-gradient(
+  to bottom,
+  #b6fbff,
+  #83a4d4
+); /* Chrome 10-25, Safari 5.1-6 */
+$dayGrad: linear-gradient(
+  to bottom,
+  #b6fbff,
+  #83a4d4
+); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+$nightColor: #525252; /* fallback for old browsers */
+$nightGradWebKit: -webkit-linear-gradient(
+  to bottom,
+  #525252,
+  #3d72b4
+); /* Chrome 10-25, Safari 5.1-6 */
+$nightGrad: linear-gradient(
+  to bottom,
+  #525252,
+  #3d72b4
+); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 .container {
-    background: $lightGreen;
-    height: 100%;
-    transition: background 2s linear;
+  background: hotpink;
+  // height: 200%;
+  transition: background 2s linear;
 }
 
 .main {
-    font-family: 'Raleway', sans-serif;
-    color: $darkGrayBlue;
-    font-size: 0.8em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: stretch;
-    padding: 1em;
-    background: $lightGreen;
-    transition: background 2s linear, color 2s linear;
+  font-family: 'Raleway', sans-serif;
+  min-height: 744px;
+  color: $darkGrayBlue;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  background: $dayColor;
+  background: $dayGradWebKit;
+  background: $dayGrad;
+
+  transition: background 2s linear, color 2s linear;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dark {
-    background: $night;
+  background: $nightColor;
+  background: $nightGradWebKit;
+  background: $nightGrad;
+  color: $snow;
+
+  a {
     color: $snow;
+    transition: background 2s linear, color 2s linear;
+  }
 
-    a {
-        color: $snow;
-        transition: background 2s linear, color 2s linear;
-    }
-
-    h2 {
-        color: $snow;
-        text-shadow: $grayBlue 2px 3px;
-    }
+  h2 {
+    color: $snow;
+    text-shadow: $grayBlue 2px 3px;
+  }
 }
 
 h1 {
-    font-size: 5em;
-    margin: 0 0 0.3em;
-    color: $snow;
-    text-shadow: $grayBlue 4px 5px;
+  font-size: 5em;
+  margin: 0 0 0.3em;
+  color: $snow;
+  text-shadow: $grayBlue 4px 5px;
 }
 
 h2 {
-    font-family: 'Fredoka One', cursive;
-    font-weight: 300;
-    margin-top: 0;
-    font-size: 2em;
-    color: $grayBlue;
-    text-shadow: $snow 2px 3px;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 300;
+  margin-top: 0;
+  font-size: 2em;
+  color: $grayBlue;
+  text-shadow: $snow 2px 3px;
 }
 
 p {
-    font-size: 1.2em;
-    margin: 0.3em 0;
-    font-weight: 700;
+  font-size: 1.2em;
+  margin: 0.3em 0;
+  font-weight: 700;
+  text-align: center;
 }
 
 a {
-    text-decoration: none;
-    background: none;
-    transition: color 2s linear;
+  text-decoration: none;
+  background: none;
+  transition: color 2s linear;
 }
 
 .btn {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    margin-bottom: 1em;
-    width: 75vw;
-    max-width: 400px;
-    font-size: 1.2em;
-    font-weight: 300;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 1em;
+  width: 75vw;
+  max-width: 400px;
+  font-size: 1.2em;
+  font-weight: 300;
 }
 
 button {
-    font-family: 'Fredoka One', cursive;
-    padding: 0.5em;
-    border: 3px solid $snow;
-    background: $lightGray;
-    color: $grayBlue;
-    min-width: 20vw;
-    border-radius: 6px;
-    font-size: 1.4em;
-    margin-bottom: 0.5em;
+  font-family: 'Fredoka One', cursive;
+  padding: 0.5em;
+  border: 3px solid $snow;
+  background: $lightGray;
+  color: $grayBlue;
+  min-width: 20vw;
+  border-radius: 6px;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
 }
 
 .manage-links {
-    margin-top: 1em;
-    width: 70%;
-    max-width: 400px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 300;
-    font-size: 0.9em;
-    background: none;
-    transition: color 2s linear;
+  margin-top: 1em;
+  width: 70%;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 0.9em;
+  background: none;
+  transition: color 2s linear;
 }
 
 button:hover {
-    border: 3px solid $lightGray;
-    background: $snow;
-    transition: all 0.8s;
-    cursor: pointer;
+  border: 3px solid $lightGray;
+  background: $snow;
+  transition: all 0.8s;
+  cursor: pointer;
 }
 
 .light {
-    font-weight: 100;
+  font-weight: 100;
 }
