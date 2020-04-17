@@ -99,8 +99,13 @@ p {
 
 a {
   text-decoration: none;
+  color: $darkGrayBlue;
   background: none;
-  transition: color 2s linear;
+  transition: all 0.3s linear;
+
+  &:hover {
+    color: $grayBlue;
+  }
 }
 
 .btn {
