@@ -6,7 +6,7 @@ import { render } from '@testing-library/react'
 const requiredProps = {
   updateTime: jest.fn(),
   deleteLast: jest.fn(),
-  addTime: jest.fn(),
+  toggleClock: jest.fn(),
   time: 'This is the time',
   isClockOpen: false,
   className: 'cheese'
