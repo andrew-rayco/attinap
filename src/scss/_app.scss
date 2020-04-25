@@ -5,30 +5,8 @@ $snow: #fcf7f8;
 $lightGray: #ced3dc;
 $wildBlueYonder: #aba9c3;
 
-// New Colours - Gradients
-$dayColor: #83a4d4; /* fallback for old browsers */
-$dayGradWebKit: -webkit-linear-gradient(
-  to bottom,
-  #b6fbff,
-  #83a4d4
-); /* Chrome 10-25, Safari 5.1-6 */
-$dayGrad: linear-gradient(
-  to bottom,
-  #b6fbff,
-  #83a4d4
-); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-$nightColor: #525252; /* fallback for old browsers */
-$nightGradWebKit: -webkit-linear-gradient(
-  to bottom,
-  #525252,
-  #3d72b4
-); /* Chrome 10-25, Safari 5.1-6 */
-$nightGrad: linear-gradient(
-  to bottom,
-  #525252,
-  #3d72b4
-); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+$day: #007991;
+$night: #092429;
 
 .container {
   background: hotpink;
@@ -37,16 +15,14 @@ $nightGrad: linear-gradient(
 
 .main {
   font-family: 'Raleway', sans-serif;
-  min-height: 744px;
-  color: $darkGrayBlue;
+  min-height: 100%;
+  color: $snow;
   font-size: 0.8em;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1em;
-  background: $dayColor;
-  background: $dayGradWebKit;
-  background: $dayGrad;
+  background: $day;
 
   transition: background 2s linear, color 2s linear;
 }
@@ -58,9 +34,7 @@ $nightGrad: linear-gradient(
 }
 
 .dark {
-  background: $nightColor;
-  background: $nightGradWebKit;
-  background: $nightGrad;
+  background: $night;
   color: $snow;
 
   a {
@@ -70,7 +44,12 @@ $nightGrad: linear-gradient(
 
   h2 {
     color: $snow;
-    text-shadow: $grayBlue 2px 3px;
+    text-shadow: #911800 2px 3px;
+  }
+
+  button {
+    color: $night;
+    transition: color 2s linear;
   }
 }
 
@@ -78,7 +57,7 @@ h1 {
   font-size: 5em;
   margin: 0 0 0.3em;
   color: $snow;
-  text-shadow: $grayBlue 4px 5px;
+  text-shadow: #911800 4px 5px;
 }
 
 h2 {
@@ -86,8 +65,8 @@ h2 {
   font-weight: 300;
   margin-top: 0;
   font-size: 2em;
-  color: $grayBlue;
-  text-shadow: $snow 2px 3px;
+  color: $snow;
+  text-shadow: #911800 2px 3px;
 }
 
 p {
@@ -99,12 +78,12 @@ p {
 
 a {
   text-decoration: none;
-  color: $darkGrayBlue;
+  color: $snow;
   background: none;
   transition: all 0.3s linear;
 
   &:hover {
-    color: $grayBlue;
+    color: $lightGray;
   }
 }
 
@@ -125,14 +104,23 @@ a {
 
 button {
   font-family: 'Fredoka One', cursive;
-  padding: 0.5em;
-  border: 3px solid $snow;
-  background: $lightGray;
-  color: $grayBlue;
+  padding: 0.7em;
+  border: none;
+  background: $snow;
+  color: $day;
   min-width: 20vw;
   border-radius: 6px;
-  font-size: 1.4em;
+  font-size: 1.3em;
   margin-bottom: 0.5em;
+  outline: none;
+  transition: color 2s linear;
+
+  &:hover {
+    border: none;
+    background: $snow;
+    cursor: pointer;
+    transition: all 0.8s, color 2s linear;
+  }
 }
 
 .manage-links {
@@ -144,16 +132,15 @@ button {
   font-weight: 300;
   font-size: 0.9em;
   background: none;
-  transition: color 2s linear;
-}
-
-button:hover {
-  border: 3px solid $lightGray;
-  background: $snow;
-  transition: all 0.8s;
-  cursor: pointer;
 }
 
 .light {
   font-weight: 100;
+}
+
+.separator {
+  height: 0.15em;
+  width: 20%;
+  background: #911800;
+  margin-bottom: 1em;
 }

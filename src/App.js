@@ -27,7 +27,7 @@ class App extends Component {
       sleepClockOpen: false,
       awakeClockOpen: false,
       currentStatus: false,
-      hasCollectedData: false
+      hasCollectedData: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -37,11 +37,9 @@ class App extends Component {
   // -- Datastore --
   initialiseAndFetchData() {
     const todaysDate = moment().format('YYYY-M-D')
-    const yesterdaysDate = moment()
-      .subtract(1, 'days')
-      .format('YYYY-M-D')
+    const yesterdaysDate = moment().subtract(1, 'days').format('YYYY-M-D')
 
-    return readData(todaysDate, yesterdaysDate, data => {
+    return readData(todaysDate, yesterdaysDate, (data) => {
       if (data) {
         const { awakeTime, sleepTime } = data
         const { lastWake, lastSleep } = this.getLastEvents(awakeTime, sleepTime)
@@ -74,7 +72,7 @@ class App extends Component {
             awakeFrozen,
             sleepFrozen,
             hasCollectedData: true,
-            currentStatus: this.getCurrentSleepStatus(lastWake, lastSleep)
+            currentStatus: this.getCurrentSleepStatus(lastWake, lastSleep),
           },
           () => {
             if (
@@ -133,7 +131,7 @@ class App extends Component {
   getLastEvents(awakes, sleeps) {
     return {
       lastWake: awakes ? awakes[awakes.length - 1] : null,
-      lastSleep: sleeps ? sleeps[sleeps.length - 1] : null
+      lastSleep: sleeps ? sleeps[sleeps.length - 1] : null,
     }
   }
 
@@ -156,7 +154,7 @@ class App extends Component {
         awakeFor,
         sleptFor,
         awakeFrozen,
-        sleepFrozen
+        sleepFrozen,
       },
       writeData(date, type, newState)
     )
@@ -195,7 +193,7 @@ class App extends Component {
       awakeFrozen,
       sleepFrozen,
       sleptFor,
-      awakeFor
+      awakeFor,
     })
   }
 
@@ -228,7 +226,7 @@ class App extends Component {
         sleptFor,
         awakeFrozen,
         sleepFrozen,
-        [toggleType]: !this.state[toggleType]
+        [toggleType]: !this.state[toggleType],
       },
       writeData(date, type, newState)
     )
@@ -267,7 +265,7 @@ class App extends Component {
             sleepAgo: newSleepAgo,
             awakeAgo: newAwakeAgo,
             awakeFrozen,
-            sleepFrozen
+            sleepFrozen,
           })
         }
       }, 46000)
@@ -323,7 +321,7 @@ class App extends Component {
       awakeFor,
       awakeFrozen,
       sleepFrozen,
-      hasCollectedData
+      hasCollectedData,
     } = this.state
     const { lastWake, lastSleep } = this.getLastEvents(awakeTime, sleepTime)
     if (awakeTime.length == 0 && sleepTime.length == 0 && !hasCollectedData) {
@@ -356,6 +354,8 @@ class App extends Component {
               ? this.renderTickTock('sleepTime')
               : null}
 
+            <div className="separator"></div>
+
             <Button
               time={formatTime(lastWake)}
               updateTime={() => this.updateTime('awakeTime')}
@@ -370,6 +370,8 @@ class App extends Component {
             {this.state.awakeClockOpen
               ? this.renderTickTock('awakeTime')
               : null}
+
+            <div className="separator"></div>
           </div>
         </div>
       </div>
