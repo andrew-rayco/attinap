@@ -55,6 +55,9 @@ exports[`App snapshot 1`] = `
         </div>
       </div>
       <div
+        class="separator"
+      />
+      <div
         class="btn awake-time"
       >
         <button>
@@ -87,6 +90,9 @@ exports[`App snapshot 1`] = `
           </a>
         </div>
       </div>
+      <div
+        class="separator"
+      />
     </div>
   </div>
 </div>
