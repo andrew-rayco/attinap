@@ -1,20 +1,20 @@
 {
-    "name": "AttiNap",
-    "short_name": "AttiNap",
-    "description": "An Atti napping tracking app",
-    "icons": [
-        {
-            "src": "/public/images/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/public/images/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#fcf7f8",
-    "background_color": "#c5d86d",
-    "display": "fullscreen"
+  "name": "AttiNap",
+  "short_name": "AttiNap",
+  "description": "An Atti napping tracking app",
+  "icons": [
+    {
+      "src": "/public/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/public/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#fcf7f8",
+  "background_color": "#911800",
+  "display": "fullscreen"
 }
