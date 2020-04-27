@@ -270,6 +270,7 @@ class App extends Component {
         }
       }, 46000)
     }
+    this.initialiseAndFetchData()
   }
 
   // -- Render --
