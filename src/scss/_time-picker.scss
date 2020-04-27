@@ -2,13 +2,13 @@
 
 .time-picker {
   border-radius: 6px;
-  border: 3px solid $wildBlueYonder;
   background: $snow;
   padding: 1em 1em 2em;
   margin-top: 1em;
   margin-bottom: 2em;
   width: 85%;
   max-width: 500px;
+  min-width: 340px;
   text-align: center;
 }
 
@@ -16,27 +16,63 @@
   padding: 1em;
   font-size: 1em;
   min-width: 15vw;
-  border: 3px solid $wildBlueYonder;
+  border: 3px solid $day;
   margin: 1em auto;
 }
 
 .timepicker-bubble circle {
-  fill: $grayBlue;
+  fill: $day;
+  opacity: 1;
 }
 
 .timepicker-hand {
-  stroke: $grayBlue;
+  stroke: $night;
 }
 
 .timepicker-bubble.small.active circle,
 .timepicker-bubble.active circle {
-  fill: $darkGrayBlue;
+  fill: $highlightRed;
+}
+
+.timepicker-info {
+  margin: 0 auto;
+}
+
+.timepicker-info-digits {
+  color: $day;
+  opacity: 0.5;
 }
 
 .timepicker-info-digits.active {
-  color: $darkerGreen;
+  color: $highlightRed;
+  opacity: 1;
 }
 
 .timepicker-bubble:hover circle {
-  fill: $darkerGreen;
+  fill: $highlightRed;
+}
+
+.dark {
+  .time-picker button {
+    color: $night;
+    border: 3px solid $night;
+  }
+
+  .timepicker-bubble circle {
+    fill: $night;
+  }
+
+  .timepicker-bubble.small.active circle,
+  .timepicker-bubble.active circle {
+    fill: $highlightRed;
+  }
+
+  .timepicker-info-digits {
+    color: $night;
+  }
+
+  .timepicker-info-digits.active {
+    color: $highlightRed;
+    opacity: 1;
+  }
 }

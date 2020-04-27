@@ -7,9 +7,9 @@ $wildBlueYonder: #aba9c3;
 
 $day: #007991;
 $night: #092429;
+$highlightRed: #911800;
 
 .container {
-  background: hotpink;
   transition: background 2s linear;
 }
 
@@ -44,7 +44,7 @@ $night: #092429;
 
   h2 {
     color: $snow;
-    text-shadow: #911800 2px 3px;
+    text-shadow: $highlightRed 2px 3px;
   }
 
   button {
@@ -57,7 +57,7 @@ h1 {
   font-size: 5em;
   margin: 0 0 0.3em;
   color: $snow;
-  text-shadow: #911800 4px 5px;
+  text-shadow: $highlightRed 4px 5px;
 }
 
 h2 {
@@ -66,7 +66,7 @@ h2 {
   margin-top: 0;
   font-size: 2em;
   color: $snow;
-  text-shadow: #911800 2px 3px;
+  text-shadow: $highlightRed 2px 3px;
 }
 
 p {
@@ -141,6 +141,6 @@ button {
 .separator {
   height: 0.15em;
   width: 20%;
-  background: #911800;
+  background: $highlightRed;
   margin-bottom: 1em;
 }
