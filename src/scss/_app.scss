@@ -1,10 +1,4 @@
-$darkerGreen: #a2b15a;
-$grayBlue: #8c86aa;
-$darkGrayBlue: #4d485d;
 $snow: #fcf7f8;
-$lightGray: #ced3dc;
-$wildBlueYonder: #aba9c3;
-
 $day: #007991;
 $night: #092429;
 $highlightRed: #911800;
@@ -39,7 +33,7 @@ $highlightRed: #911800;
 
   a {
     color: $snow;
-    transition: background 2s linear, color 2s linear;
+    transition: background 2s linear, color 0.3s linear;
   }
 
   h2 {
@@ -83,7 +77,8 @@ a {
   transition: all 0.3s linear;
 
   &:hover {
-    color: $lightGray;
+    color: $highlightRed;
+    transition: all 0.3s linear;
   }
 }
 
